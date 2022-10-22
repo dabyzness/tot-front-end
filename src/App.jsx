@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 // page components
@@ -13,6 +13,7 @@ import Search from "./pages/Search/Search";
 import New from "./pages/New/New";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Profile from "./pages/Profile/Profile";
+import NewRestaurant from "./pages/NewRestaurant/NewRestaurant";
 
 // components
 import Nav from "./components/Nav/Nav";
@@ -20,6 +21,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // services
 import * as authService from "./services/authService";
+import * as restaurantService from "./services/restaurantService"
 
 // styles
 import "./App.css";
@@ -27,16 +29,34 @@ import "./App.css";
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const navigate = useNavigate();
+  const [restaurants,setRestaurants]=useState([])
 
+  
   const handleLogout = () => {
     authService.logout();
     setUser(null);
     navigate("/");
   };
-
+  
   const handleSignupOrLogin = () => {
     setUser(authService.getUser());
   };
+  
+  const handleAddRestaurant = async (restaurantData) => {
+    const newRestaurant = await restaurantService.create(restaurantData)
+    setRestaurants([newRestaurant, ...restaurants])
+    navigate('/restaurants')
+  }
+
+  useEffect(() => {
+    console.log("The useEffect is running");
+    const fetchAllRestaurants = async () => {
+      console.log('The Fetch All Blogs function is running')
+      const data = await restaurantService.index()
+      setRestaurants(data)
+    }
+    fetchAllRestaurants()
+  }, [])
 
   return (
     <>
@@ -70,6 +90,16 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
               <Wishlist />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/restaurants/new"
+          element={
+            <ProtectedRoute user={user}>
+              <NewRestaurant 
+                user={user}
+                handleAddRestaurant={handleAddRestaurant}
+              />
             </ProtectedRoute>}
         />
         <Route 
