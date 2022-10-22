@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css";
+import { Link, NavLink } from "react-router-dom";
+import styles from "./Nav.module.css";
 import home from "./home.svg";
 import search from "./search.svg";
 import add from "./add-outline.svg";
 import tot from "./tot.png";
 import wishlist from "./bookmark.svg";
 
-const NavBar = ({ user, handleLogout }) => {
+const Nav = ({ user, handleLogout }) => {
   return (
     <nav className={styles.bar}>
       {user ? (
@@ -15,29 +15,29 @@ const NavBar = ({ user, handleLogout }) => {
           <div className='icon'><Link to="" onClick={handleLogout}>LOG OUT</Link></div>
           <div className='icon'><Link to="/changePassword">Change Password</Link></div> */}
           <div className="icon">
-            <Link to="/home">
+            <NavLink to="/">
               <img src={home} alt="home" />
-            </Link>
+            </NavLink>
           </div>
           <div className="icon">
-            <Link to="/search">
+            <NavLink to="/search">
               <img src={search} alt="search" />
-            </Link>
+            </NavLink>
           </div>
           <div className="icon">
-            <Link to="/new">
+            <NavLink to="/new">
               <img src={add} alt="new post icon" />
-            </Link>
+            </NavLink>
           </div>
           <div className="icon">
-            <Link to="/wishlist">
+            <NavLink to="/wishlist">
               <img src={wishlist} alt="wishlist" />
-            </Link>
+            </NavLink>
           </div>
           <div className="icon">
-            <Link to="/profile">
+            <NavLink to="/profile">
               <img src={tot} alt="your profile" />
-            </Link>
+            </NavLink>
           </div>
         </>
       ) : (
@@ -54,4 +54,4 @@ const NavBar = ({ user, handleLogout }) => {
   );
 };
 
-export default NavBar;
+export default Nav;

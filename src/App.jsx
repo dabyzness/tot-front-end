@@ -1,41 +1,45 @@
 // npm modules
-import { useState } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { useState } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 // page components
-import Signup from './pages/Signup/Signup'
-import Login from './pages/Login/Login'
-import Landing from './pages/Landing/Landing'
-import Profiles from './pages/Profiles/Profiles'
-import ChangePassword from './pages/ChangePassword/ChangePassword'
+import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
+import Landing from "./pages/Landing/Landing";
+import Profiles from "./pages/Profiles/Profiles";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import Home from "./pages/Home/Home"
+import Search from "./pages/Search/Search";
+import New from "./pages/New/New";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import Profile from "./pages/Profile/Profile";
 
 // components
-import NavBar from './components/NavBar/NavBar'
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import Nav from "./components/Nav/Nav";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // services
-import * as authService from './services/authService'
+import * as authService from "./services/authService";
 
 // styles
-import './App.css'
+import "./App.css";
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser())
-  const navigate = useNavigate()
+  const [user, setUser] = useState(authService.getUser());
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    authService.logout()
-    setUser(null)
-    navigate('/')
-  }
+    authService.logout();
+    setUser(null);
+    navigate("/");
+  };
 
   const handleSignupOrLogin = () => {
-    setUser(authService.getUser())
-  }
+    setUser(authService.getUser());
+  };
 
   return (
     <>
-
       <Routes>
         <Route path="/" element={<Landing user={user} />} />
         <Route
@@ -47,6 +51,37 @@ const App = () => {
           element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
         />
         <Route
+          path="/home"
+          element={<Home />} 
+        />
+        <Route 
+          path="/search"
+          element={<Search />}
+        />
+        <Route 
+          path="/new"
+          element={
+            <ProtectedRoute user={user}>
+              <New />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/wishlist"
+          element={
+            <ProtectedRoute user={user}>
+              <Wishlist />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/profile"
+          element={
+            <ProtectedRoute user={user}>
+              <Profile handleLogout={handleLogout} />
+              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
@@ -61,11 +96,11 @@ const App = () => {
               <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
-      <NavBar user={user} handleLogout={handleLogout} />
+      <Nav user={user} handleLogout={handleLogout} />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
