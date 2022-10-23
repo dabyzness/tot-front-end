@@ -5,7 +5,7 @@ button.inactive {
 }
 
 button.inactive:hover {
-  cursor: ;
+  cursor: pointer;
 }
 
 button.active {
@@ -18,9 +18,15 @@ button {
   border-radius: 10px 10px 0 0;
 }
 
+#button-holder {
+  display: flex;
+  width: calc(30vw + 4em +4px);
+  margin-bottom: -2px;
+}
+
 @media screen and (min-width: 300px) {
   #button-holder {
-    background-color: none;
+    width: calc(220px + 4em + 4px);
   };
 }
 

@@ -1,6 +1,3 @@
-import LoginForm from "../LoginForm/LoginForm";
-import SignupForm from "../SignupForm/SignupForm";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginTabs.css";
 
@@ -8,7 +5,7 @@ const LoginTabs = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ display: "flex", width: "calc(30vw + 4em + 4px)",  marginBottom: "-2px" }} id="button-holder">
+    <div id="button-holder">
       <button
         style={{ marginRight: "auto" }}
         onClick={() => {
