@@ -1,7 +1,7 @@
 .bar {
   display: flex;
   justify-content: space-around;
-  background-color: #faf0ca; 
+  background-color: var(--orange); 
   height: 10vh;
 }
 
@@ -21,4 +21,15 @@
   height: 1.5em;
   fill: #0d3b66;
   color: #0d3b66;
+}
+
+a {
+  justify-content: center;
+  align-self: center;
+  text-decoration: none;
+  background-color: var(--blue);
+  border: 1px solid var(--blue);
+  color:var(--tan);
+  border-radius: 10px;
+  padding: 8px;
 }
