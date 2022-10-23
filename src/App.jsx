@@ -22,6 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 // services
 import * as authService from "./services/authService";
 import * as restaurantService from "./services/restaurantService"
+import * as ttreviewService from "./services/ttreviewService"
 
 // styles
 import "./App.css";
@@ -30,6 +31,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const navigate = useNavigate();
   const [restaurants,setRestaurants]=useState([])
+  const [ttreviews,setTTReviews]=useState([])
 
   const handleLogout = () => {
     authService.logout();
@@ -47,14 +49,25 @@ const App = () => {
     navigate('/restaurants')
   }
 
+  const handleAddTTReview = async (ttreviewData) => {
+    const newTTReview = await ttreviewService.create(ttreviewData)
+    setTTReviews([newTTReview, ...ttreviews])
+    navigate('/reviews')
+  }
+
   useEffect(() => {
-    console.log("The useEffect is running");
     const fetchAllRestaurants = async () => {
-      console.log('The Fetch All Blogs function is running')
       const data = await restaurantService.index()
       setRestaurants(data)
+      console.log(restaurants)
+    }
+    const fetchAllTTReviews = async () => {
+      const data = await ttreviewService.index()
+      setTTReviews(data)
+      console.log(ttreviews)
     }
     fetchAllRestaurants()
+    fetchAllTTReviews()
   }, [])
 
   return (
@@ -81,7 +94,10 @@ const App = () => {
           path="/new"
           element={
             <ProtectedRoute user={user}>
-              <New />
+              <New 
+                user={user}
+                handleAddTTReview={handleAddTTReview}
+              />
             </ProtectedRoute>}
         />
         <Route 
