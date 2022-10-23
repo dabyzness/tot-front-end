@@ -1,10 +1,22 @@
+@font-face {
+  font-family: "Coco Gothic";
+  src: url("./assets/fonts/Coco-Gothic/Coco-Gothic-Regular-trial.ttf");
+}
+
+:root {
+  --tan: #FAF0CA;
+  --blue: #0D3B66;
+  --yellow: #F4D35E;
+  --orange: #EE964B;
+  --dark-orange: #f95738; 
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
-    'Helvetica Neue', sans-serif;
+  font-family: "Coco Gothic", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--tan);
 }
 
 code {
@@ -16,4 +28,13 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+button, 
+input {
+  font-family: "Coco Gothic", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+  margin: 40px 0 0 0;
 }
