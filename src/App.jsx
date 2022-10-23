@@ -31,7 +31,6 @@ const App = () => {
   const navigate = useNavigate();
   const [restaurants,setRestaurants]=useState([])
 
-  
   const handleLogout = () => {
     authService.logout();
     setUser(null);
