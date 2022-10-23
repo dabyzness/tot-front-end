@@ -11,14 +11,15 @@
 }
 .card {
   border: 2px solid var(--blue);
+  border-top: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 30vw;
+  width: 30vw;
   min-height: 40vh;
   padding: 2em;
   box-shadow: 0 6px 8px -4px black;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 .inputContainer {
@@ -62,4 +63,10 @@ button {
 button:hover {
   background-color: var(--blue);
   color: var(--tan);
+}
+
+@media screen and (max-width: 300px) {
+  .card {
+    width: 220px;
+  };
 }
