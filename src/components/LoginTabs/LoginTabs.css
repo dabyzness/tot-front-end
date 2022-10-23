@@ -1,0 +1,26 @@
+button.inactive {
+  background-color: var(--blue);
+  color: var(--tan);
+  border-bottom: none;
+}
+
+button.inactive:hover {
+  cursor: ;
+}
+
+button.active {
+  border: 2px solid var(--blue);
+  border-bottom: 3px solid var(--tan);
+}
+
+button {
+  min-width: fit-content;
+  border-radius: 10px 10px 0 0;
+}
+
+@media screen and (min-width: 300px) {
+  #button-holder {
+    background-color: none;
+  };
+}
+

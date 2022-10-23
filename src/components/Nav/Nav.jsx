@@ -41,11 +41,21 @@ const Nav = ({ user, handleLogout }) => {
           </div>
         </>
       ) : (
-          <>
-            <Link to="/home">Look Around</Link>
-            <Link to="/signup">Sign Up</Link>
-          </>  
-
+        <>
+          <div className="icon">
+            <NavLink to="/">
+              <img src={home} alt="home" />
+            </NavLink>
+          </div>
+          <div className="icon">
+            <NavLink to="/search">
+              <img src={search} alt="search" />
+            </NavLink>
+          </div>
+          <div>
+            <NavLink to="/login">Log In/Sign Up</NavLink>
+          </div>
+        </>
       )}
     </nav>
   );

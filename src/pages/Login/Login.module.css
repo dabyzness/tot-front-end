@@ -3,3 +3,8 @@
   align-items: center;
   flex-direction: column;
 }
+
+button.inactive {
+  background-color: var(--blue);
+  color: var(--tan);
+}
