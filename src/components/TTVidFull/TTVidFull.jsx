@@ -15,8 +15,6 @@ const TTVidFull = (props) => {
       border: 0,
       objectFit:"fill"
     }
-
-    console.log(`https://www.tiktok.com/embed/${props.vidID}`)
   
   return (
       <div className="embeded-tok">
@@ -37,6 +35,7 @@ const TTVidFull = (props) => {
         <br />
         <div>
           <button>Prev</button>
+          {props.buttonText ? <button>{props.buttonText}</button>:<></>}
           <button>Next</button>
         </div>
       </div>

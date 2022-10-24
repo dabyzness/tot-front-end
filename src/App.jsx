@@ -12,8 +12,12 @@ import Home from "./pages/Home/Home"
 import Search from "./pages/Search/Search";
 import New from "./pages/New/New";
 import Wishlist from "./pages/Wishlist/Wishlist";
-import Profile from "./pages/Profile/Profile";
 import NewRestaurant from "./pages/NewRestaurant/NewRestaurant";
+import Profile from "./pages/Profile/Profile";
+import Followers from "./pages/Followers/Followers";
+import Following from "./pages/Following/Following";
+import Shared from "./pages/Shared/Shared";
+import Visited from "./pages/Visited/Visited";
 
 // components
 import Nav from "./components/Nav/Nav";
@@ -59,12 +63,10 @@ const App = () => {
     const fetchAllRestaurants = async () => {
       const data = await restaurantService.index()
       setRestaurants(data)
-      console.log(restaurants)
     }
     const fetchAllTTReviews = async () => {
       const data = await ttreviewService.index()
       setTTReviews(data)
-      console.log(ttreviews)
     }
     fetchAllRestaurants()
     fetchAllTTReviews()
@@ -105,6 +107,42 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
               <Wishlist />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/shared"
+          element={
+            <ProtectedRoute user={user}>
+              <Shared 
+                user={user}
+              />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/followers"
+          element={
+            <ProtectedRoute user={user}>
+              <Followers 
+                user={user}
+              />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/following"
+          element={
+            <ProtectedRoute user={user}>
+              <Following 
+                user={user}
+              />
+            </ProtectedRoute>}
+        />
+        <Route 
+          path="/visited"
+          element={
+            <ProtectedRoute user={user}>
+              <Visited 
+                user={user}
+              />
             </ProtectedRoute>}
         />
         <Route 
