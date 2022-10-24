@@ -45,6 +45,7 @@ const LoginForm = (props) => {
             name="email"
             onChange={handleChange}
             className="input"
+            required
           />
         </div>
         <div className={styles.inputContainer}>
