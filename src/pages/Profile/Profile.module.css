@@ -1,0 +1,30 @@
+.logout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.totavi {
+  max-width: 45%;
+  max-height: 30%;
+}
+
+
+.phead {
+  margin: 0;
+}
+
+.stats {
+  display: flex;
+  width: 70%;
+  flex-wrap: wrap;
+}
+
+.stat {
+  width: 50%;
+  text-align: center;
+}
