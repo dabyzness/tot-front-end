@@ -121,19 +121,18 @@ const App = () => {
           path="/profile"
           element={
             <ProtectedRoute user={user}>
-              <Profile handleLogout={handleLogout} />
-              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
+              <Profile handleLogout={handleLogout} user={user}/>
             </ProtectedRoute>
           }
         />
-        {/* <Route
+         {/* <Route
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
               <Profiles />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/change-password"
           element={
@@ -141,7 +140,7 @@ const App = () => {
               <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
             </ProtectedRoute>
           }
-        /> */}
+        /> 
       </Routes>
       <Nav user={user} handleLogout={handleLogout} />
     </>
