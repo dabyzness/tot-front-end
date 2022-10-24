@@ -1,13 +1,52 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import TTVidFull from "../../components/TTVidFull/TTVidFull";
+import Loading from "../Loading/Loading";
+
+import * as ttreviewService from "../../services/ttreviewService"
+
 
 const Shared = (props) => {
-  console.log(props.user.profile)
+  const location = useLocation()
+  const [shared,setShared] = useState(location.state)
+  const [idx, setIdx] = useState(0)
+
+  const nextVideo = () =>{
+    
+    if (idx < shared.length-1){
+      setIdx(idx + 1)
+    }
+  }
+  const prevVideo = () =>{
+    
+    if (idx > 0){
+      setIdx(idx - 1)
+    }
+  }
+
+  const buttonFunction = async(id) =>{
+    const deletedVid = props.handleDeleteTTReview(id)
+    setShared(shared.filter(v => v._id !== deletedVid._id))
+    if (idx > 0){
+      setIdx(idx-1)
+    }
+  }
+
+  let currentVideo = shared[idx]
+
+  if(!shared) return <Loading/>
 
   return ( 
     <>
-      <h1>Shared TikToks</h1>
-      <TTVidFull buttonText="Delete" vidID="7119935867350830378"/>
+      <h1> Shared TikToks </h1>
+      <TTVidFull 
+        buttonText="Delete" 
+        buttonFunction={buttonFunction}
+        dbID={currentVideo._id}
+        vidID={currentVideo.vidID}
+        nextVideo={nextVideo}
+        prevVideo={prevVideo}
+      />
     </>
   );
 }
