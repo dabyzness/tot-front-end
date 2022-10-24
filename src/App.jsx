@@ -8,7 +8,7 @@ import Login from "./pages/Login/Login";
 import Landing from "./pages/Landing/Landing";
 import Profiles from "./pages/Profiles/Profiles";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/Home";
 import Search from "./pages/Search/Search";
 import New from "./pages/New/New";
 import Wishlist from "./pages/Wishlist/Wishlist";
@@ -25,8 +25,8 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // services
 import * as authService from "./services/authService";
-import * as restaurantService from "./services/restaurantService"
-import * as ttreviewService from "./services/ttreviewService"
+import * as restaurantService from "./services/restaurantService";
+import * as ttreviewService from "./services/ttreviewService";
 
 // styles
 import "./App.css";
@@ -34,30 +34,30 @@ import "./App.css";
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const navigate = useNavigate();
-  const [restaurants,setRestaurants]=useState([])
-  const [ttreviews,setTTReviews]=useState([])
+  const [restaurants, setRestaurants] = useState([]);
+  const [ttreviews, setTTReviews] = useState([]);
 
   const handleLogout = () => {
     authService.logout();
     setUser(null);
     navigate("/");
   };
-  
+
   const handleSignupOrLogin = () => {
     setUser(authService.getUser());
   };
-  
+
   const handleAddRestaurant = async (restaurantData) => {
-    const newRestaurant = await restaurantService.create(restaurantData)
-    setRestaurants([newRestaurant, ...restaurants])
-    navigate('/restaurants')
-  }
+    const newRestaurant = await restaurantService.create(restaurantData);
+    setRestaurants([newRestaurant, ...restaurants]);
+    navigate("/restaurants");
+  };
 
   const handleAddTTReview = async (ttreviewData) => {
-    const newTTReview = await ttreviewService.create(ttreviewData)
-    setTTReviews([newTTReview, ...ttreviews])
-    navigate('/reviews')
-  }
+    const newTTReview = await ttreviewService.create(ttreviewData);
+    setTTReviews([newTTReview, ...ttreviews]);
+    navigate("/reviews");
+  };
 
   const handleDeleteTTReview = async (id) =>{
     const deletedTTReview = await ttreviewService.delete(id)
@@ -67,21 +67,31 @@ const App = () => {
 
   useEffect(() => {
     const fetchAllRestaurants = async () => {
-      const data = await restaurantService.index()
-      setRestaurants(data)
-    }
+      const data = await restaurantService.index();
+      setRestaurants(data);
+    };
     const fetchAllTTReviews = async () => {
-      const data = await ttreviewService.index()
-      setTTReviews(data)
-    }
-    fetchAllRestaurants()
-    fetchAllTTReviews()
-  }, [])
-  
+
+      const data = await ttreviewService.index();
+      setTTReviews(data);
+    };
+    fetchAllRestaurants();
+    fetchAllTTReviews();
+  }, []);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+        <Route
+          path="/"
+          element={
+            <Landing
+              user={user}
+              restaurants={restaurants}
+              ttreviews={ttreviews}
+            />
+          }
+        />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -90,32 +100,25 @@ const App = () => {
           path="/login"
           element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
         />
+        <Route path="/home" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route
-          path="/home"
-          element={<Home />} 
-        />
-        <Route 
-          path="/search"
-          element={<Search />}
-        />
-        <Route 
           path="/new"
           element={
             <ProtectedRoute user={user}>
-              <New 
-                user={user}
-                handleAddTTReview={handleAddTTReview}
-              />
-            </ProtectedRoute>}
+              <New user={user} handleAddTTReview={handleAddTTReview} />
+            </ProtectedRoute>
+          }
         />
-        <Route 
+        <Route
           path="/wishlist"
           element={
             <ProtectedRoute user={user}>
               <Wishlist />
-            </ProtectedRoute>}
+            </ProtectedRoute>
+          }
         />
-        <Route 
+        <Route
           path="/shared"
           element={
             <ProtectedRoute user={user}>
@@ -127,44 +130,42 @@ const App = () => {
               />
             </ProtectedRoute>}
         />
-        <Route 
+        <Route
           path="/followers"
           element={
             <ProtectedRoute user={user}>
-              <Followers 
-                user={user}
-              />
-            </ProtectedRoute>}
+              <Followers user={user} />
+            </ProtectedRoute>
+          }
         />
-        <Route 
+        <Route
           path="/following"
           element={
             <ProtectedRoute user={user}>
-              <Following 
-                user={user}
-              />
-            </ProtectedRoute>}
+              <Following user={user} />
+            </ProtectedRoute>
+          }
         />
-        <Route 
+        <Route
           path="/visited"
           element={
             <ProtectedRoute user={user}>
-              <Visited 
-                user={user}
-              />
-            </ProtectedRoute>}
+              <Visited user={user} />
+            </ProtectedRoute>
+          }
         />
-        <Route 
+        <Route
           path="/restaurants/new"
           element={
             <ProtectedRoute user={user}>
-              <NewRestaurant 
+              <NewRestaurant
                 user={user}
                 handleAddRestaurant={handleAddRestaurant}
               />
-            </ProtectedRoute>}
+            </ProtectedRoute>
+          }
         />
-        <Route 
+        <Route
           path="/profile"
           element={
             <ProtectedRoute user={user}>
@@ -175,7 +176,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-         {/* <Route
+        {/* <Route
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
@@ -190,7 +191,7 @@ const App = () => {
               <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
             </ProtectedRoute>
           }
-        /> 
+        />
       </Routes>
       <Nav user={user} handleLogout={handleLogout} />
     </>

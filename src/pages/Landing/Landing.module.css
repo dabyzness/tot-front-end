@@ -1,5 +1,12 @@
 .container {
+  height: 90vh;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.mapContainer {
+  padding-top: 1rem;
+  width: 90vw;
+  height: 30vh;
 }
