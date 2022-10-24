@@ -2,10 +2,18 @@ button.inactive {
   background-color: var(--blue);
   color: var(--tan);
   border-bottom: none;
+  border-radius: 10px 10px 0 0;
+}
+
+button.active:hover {
+  background-color: var(--tan);
+  color: var(--black);
 }
 
 button.inactive:hover {
   cursor: pointer;
+  background-color: #414f5b;
+  /* color: var(--blue); */
 }
 
 button.active {
@@ -15,7 +23,6 @@ button.active {
 
 button {
   min-width: fit-content;
-  border-radius: 10px 10px 0 0;
 }
 
 #button-holder {
@@ -27,6 +34,8 @@ button {
 @media screen and (min-width: 300px) {
   #button-holder {
     width: calc(220px + 4em + 4px);
+    margin-bottom: -5px;
+
   };
 }
 
