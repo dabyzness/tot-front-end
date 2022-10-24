@@ -34,9 +34,11 @@ const TTVidFull = (props) => {
         </div>
         <br />
         <div>
-          <button>Prev</button>
-          {props.buttonText ? <button>{props.buttonText}</button>:<></>}
-          <button>Next</button>
+          <button onClick={(() => props.prevVideo())}>
+            Prev
+          </button>
+          {props.buttonText ? <button onClick={(() => props.buttonFunction(props.dbID))}>{props.buttonText}</button>:<></>}
+          <button onClick={(() => props.nextVideo())}>Next</button>
         </div>
       </div>
 

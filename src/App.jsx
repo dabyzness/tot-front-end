@@ -59,12 +59,19 @@ const App = () => {
     navigate("/reviews");
   };
 
+  const handleDeleteTTReview = async (id) =>{
+    const deletedTTReview = await ttreviewService.delete(id)
+    setTTReviews(ttreviews.filter(r => r._id !== deletedTTReview._id))
+    navigate('/shared')
+  }
+
   useEffect(() => {
     const fetchAllRestaurants = async () => {
       const data = await restaurantService.index();
       setRestaurants(data);
     };
     const fetchAllTTReviews = async () => {
+
       const data = await ttreviewService.index();
       setTTReviews(data);
     };
@@ -115,9 +122,13 @@ const App = () => {
           path="/shared"
           element={
             <ProtectedRoute user={user}>
-              <Shared user={user} />
-            </ProtectedRoute>
-          }
+              <Shared 
+                user={user}
+                ttreviews={ttreviews}
+                setTTReviews={setTTReviews}
+                handleDeleteTTReview={handleDeleteTTReview}
+              />
+            </ProtectedRoute>}
         />
         <Route
           path="/followers"
@@ -158,7 +169,10 @@ const App = () => {
           path="/profile"
           element={
             <ProtectedRoute user={user}>
-              <Profile handleLogout={handleLogout} user={user} />
+              <Profile 
+                user={user}
+                handleLogout={handleLogout} 
+              />
             </ProtectedRoute>
           }
         />

@@ -7,19 +7,17 @@ import Loading from "../Loading/Loading";
 
 
 const Profile = (props) => {
-  console.log("Profile:",props.user.profile)
   const [profile, setProfile] = useState(null)
 
   useEffect(() =>{
     const fetchProfile = async () => {
       const data = await profileService.getProfile(props.user.profile)
       setProfile(data)
-      console.log(profile)
+      
     }
     fetchProfile()
 
-  }, [])
-
+  }, [props.user.profile])
   if (!profile) return <Loading/>
 
   return (
@@ -39,25 +37,25 @@ const Profile = (props) => {
       <div className="page">
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <Link to="/following"> 
+            <Link to="/following" state={profile.following}> 
               <h2>{profile.following.length}</h2>
               <p>Following</p>
             </Link>
           </div>
           <div className={styles.stat}>
-            <Link to="/followers">
+            <Link to="/followers" state={profile.followers}>
               <h2>{profile.followers.length}</h2>
               <p>Followers</p>
             </Link>
           </div>
           <div className={styles.stat}>
-            <Link to="/shared">
+            <Link to="/shared" state={profile.shared}>
               <h2>{profile.shared.length}</h2>
               <p>Shared Reviews</p>
             </Link>
           </div>
           <div className={styles.stat}>
-            <Link to="/visited">
+            <Link to="/visited" state={profile.visited}>
               <h2>{profile.visited.length}</h2>
               <p>Visited</p>
             </Link>
