@@ -1,24 +1,12 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import tot from "../../assets/tot.png";
-import * as profileService from '../../services/profileService'
 import Loading from "../Loading/Loading";
 
 
 const Profile = (props) => {
-  const [profile, setProfile] = useState(null)
 
-  useEffect(() =>{
-    const fetchProfile = async () => {
-      const data = await profileService.getProfile(props.user.profile)
-      setProfile(data)
-      
-    }
-    fetchProfile()
-
-  }, [props.user.profile])
-  if (!profile) return <Loading/>
+  if (!props.profile) return <Loading/>
 
   return (
     <>
@@ -37,26 +25,26 @@ const Profile = (props) => {
       <div className="page">
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <Link to="/following" state={profile.following}> 
-              <h2>{profile.following.length}</h2>
+            <Link to="/following" state={props.profile.following}> 
+              <h2>{props.profile.following.length}</h2>
               <p>Following</p>
             </Link>
           </div>
           <div className={styles.stat}>
-            <Link to="/followers" state={profile.followers}>
-              <h2>{profile.followers.length}</h2>
+            <Link to="/followers" state={props.profile.followers}>
+              <h2>{props.profile.followers.length}</h2>
               <p>Followers</p>
             </Link>
           </div>
           <div className={styles.stat}>
-            <Link to="/shared" state={profile.shared}>
-              <h2>{profile.shared.length}</h2>
+            <Link to="/shared" state={props.profile.shared}>
+              <h2>{props.profile.shared.length}</h2>
               <p>Shared Reviews</p>
             </Link>
           </div>
           <div className={styles.stat}>
-            <Link to="/visited" state={profile.visited}>
-              <h2>{profile.visited.length}</h2>
+            <Link to="/visited" state={props.profile.visited}>
+              <h2>{props.profile.visited.length}</h2>
               <p>Visited</p>
             </Link>
           </div>
@@ -64,7 +52,9 @@ const Profile = (props) => {
         <div>
           <button>Customize Profile</button>
         </div>
-        <div>Wishlist</div>
+        <div>
+          <p>Wishlist: {props.profile.wishlist.length}</p>
+        </div>
       </div>
     </>
   );

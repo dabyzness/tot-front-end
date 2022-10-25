@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
 import RestaurantCardRow from "../../components/RestaurantCardRow/RestaurantCardRow";
 
 const Visited = (props) => {
