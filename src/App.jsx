@@ -30,6 +30,7 @@ import * as ttreviewService from "./services/ttreviewService";
 
 // styles
 import "./App.css";
+import RestaurantDets from "./pages/RestaurantDets/RestaurantDets";
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -175,6 +176,14 @@ const App = () => {
                 user={user}
                 handleAddRestaurant={handleAddRestaurant}
               />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurants/test"
+          element={
+            <ProtectedRoute user={user}>
+              <RestaurantDets/>
             </ProtectedRoute>
           }
         />
