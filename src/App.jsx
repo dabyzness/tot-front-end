@@ -24,6 +24,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // services
 import * as authService from "./services/authService";
+import * as profileService from"./services/profileService";
 import * as restaurantService from "./services/restaurantService";
 import * as ttreviewService from "./services/ttreviewService";
 
@@ -35,6 +36,8 @@ const App = () => {
   const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
   const [ttreviews, setTTReviews] = useState([]);
+  
+  const [profile, setProfile] = useState(null)
 
   const handleLogout = () => {
     authService.logout();
@@ -63,6 +66,15 @@ const App = () => {
     setTTReviews(ttreviews.filter(r => r._id !== deletedTTReview._id))
     return deletedTTReview
   }
+
+  useEffect(() =>{
+    const fetchProfile = async () => {
+      const data = await profileService.getProfile(user.profile)
+      setProfile(data)
+      
+    }
+    fetchProfile()
+  }, [user.profile])
 
   useEffect(() => {
     const fetchAllRestaurants = async () => {
@@ -113,7 +125,9 @@ const App = () => {
           path="/wishlist"
           element={
             <ProtectedRoute user={user}>
-              <Wishlist />
+              <Wishlist 
+                profile={profile}
+              />
             </ProtectedRoute>
           }
         />
@@ -170,6 +184,7 @@ const App = () => {
             <ProtectedRoute user={user}>
               <Profile 
                 user={user}
+                profile={profile}
                 handleLogout={handleLogout} 
               />
             </ProtectedRoute>
