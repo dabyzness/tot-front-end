@@ -1,10 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import TTVidFull from "../../components/TTVidFull/TTVidFull";
 import Loading from "../Loading/Loading";
-
-import * as ttreviewService from "../../services/ttreviewService"
-
 
 const Shared = (props) => {
   const location = useLocation()
@@ -24,14 +21,15 @@ const Shared = (props) => {
     }
   }
 
-  const buttonFunction = async(id) =>{
-    const deletedVid = props.handleDeleteTTReview(id)
+  const buttonFunction = async (id) =>{
+    const deletedVid = await props.handleDeleteTTReview(id)
+    console.log(deletedVid)
     setShared(shared.filter(v => v._id !== deletedVid._id))
     if (idx > 0){
       setIdx(idx-1)
     }
   }
-
+  
   let currentVideo = shared[idx]
 
   if(!shared) return <Loading/>
