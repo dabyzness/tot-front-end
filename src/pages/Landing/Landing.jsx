@@ -1,10 +1,12 @@
+import TTRow from "../../components/TTRow/TTRow";
+
 import Map, { Marker, Popup, FullscreenControl } from "react-map-gl";
 import { useState, useMemo, useRef, useCallback } from "react";
 
 import tot from "../../assets/tot.png";
 import styles from "./Landing.module.css";
 
-const Landing = ({ user, restaurants }) => {
+const Landing = ({ user, restaurants, ttreviews }) => {
   const [popupViewState, setPopupViewState] = useState(null);
   const [mapSize, setMapSize] = useState({ width: "90vw", height: "30vw" });
   const [viewState, setViewState] = useState({
@@ -38,6 +40,7 @@ const Landing = ({ user, restaurants }) => {
     mapRef.current.resize();
   }, []);
 
+  
   return (
     <main className={styles.container}>
       {/* <h1>Hello, {user ? user.name : "Tot"}</h1> */}
@@ -94,16 +97,8 @@ const Landing = ({ user, restaurants }) => {
       >
         Large
       </button>
-      <img
-        src="https://p16-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/3ff396c14fa74a769877ae8034c002ca~tplv-r00ih4996s-1:720:720.jpeg?x-expires=1666666800&amp;x-signature=dPry8wvBp6YQed%2BwMAH0qcdt5Q4%3D"
-        alt="pic"
-        style={{ height: "100px", width: "auto" }}
-      />
-      <img
-        src="https://p19-sign.tiktokcdn-us.com/tos-useast5-p-0068-tx/3ff396c14fa74a769877ae8034c002ca~tplv-r00ih4996s-1:720:720.jpeg?x-expires=1666666800&amp;x-signature=xyYhSC2HHpim3HaeZmqTUdD%2FUzA%3D"
-        alt="pic"
-        style={{ height: "100px", width: "auto" }}
-      />
+      <h3>Tastes of TikTok</h3>
+      <TTRow ttreviews={ttreviews}/>
     </main>
   );
 };

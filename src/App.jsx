@@ -80,6 +80,7 @@ const App = () => {
 
   return (
     <>
+    <main>
       <Routes>
         <Route
           path="/"
@@ -192,6 +193,7 @@ const App = () => {
           }
         />
       </Routes>
+      </main>
       <Nav user={user} handleLogout={handleLogout} />
     </>
   );
