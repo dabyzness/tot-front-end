@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+
+import SearchResults from "../../components/SearchResults/SearchResults.jsx";
 import { search } from "../../services/searchService.js";
 
 const Search = () => {
@@ -40,14 +42,9 @@ const Search = () => {
         <option value="cuisine">Cuisine</option>
       </select>
 
-      {results.length !== 0 &&
-        results.map((result, i) => {
-          if (typeQuery === "profile") {
-            return <h1 key={`profile-${i}`}>{result.name}</h1>;
-          } else {
-            return <h1 key={`restaurant-${i}`}>{result.name}</h1>;
-          }
-        })}
+      {results.length !== 0 && (
+        <SearchResults results={results} typeQuery={typeQuery} />
+      )}
     </main>
   );
 };
