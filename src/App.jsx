@@ -62,7 +62,7 @@ const App = () => {
   const handleDeleteTTReview = async (id) =>{
     const deletedTTReview = await ttreviewService.delete(id)
     setTTReviews(ttreviews.filter(r => r._id !== deletedTTReview._id))
-    navigate('/shared')
+    return deletedTTReview
   }
 
   useEffect(() => {
