@@ -1,35 +1,22 @@
-
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
+import RestaurantCardRow from "../../components/RestaurantCardRow/RestaurantCardRow";
 
 const Visited = (props) => {
+  const location = useLocation()
+  const [visited,setVisited] = useState(location.state)
+  const [mostRecent, setMostRecent] = useState(visited)
+  const [topRated, setTopRated] = useState(visited)
+  const [totFavorites, setTotFavorites] = useState(visited)
+
   return ( 
     <div>
       <h1>Visited Restaurants</h1>
       <ul>
-        <li style={{listStyleType:"none"}}>
-          <h3> Most recent</h3>
-          <div style={{display:"flex",gap:"10px"}}>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-          </div>
-        </li>
-        <li style={{listStyleType:"none"}}>
-          <h3> Your Top Rated </h3>
-          <div style={{display:"flex",gap:"10px"}}>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-          </div>
-        </li>
-        <li style={{listStyleType:"none"}}>
-          <h3> Best of ToT </h3>
-          <div style={{display:"flex",gap:"10px"}}>
-            <RestaurantCard/>
-            <RestaurantCard/>
-            <RestaurantCard/>
-          </div>
-        </li>
+        <RestaurantCardRow title="Most Recent" restaurants={mostRecent}/>
+        <RestaurantCardRow title="Top Rated" restaurants={topRated}/>
+        <RestaurantCardRow title="ToT Favorites" restaurants={totFavorites}/>
       </ul>
     </div>
   );
