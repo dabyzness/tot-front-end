@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import tot from "../../assets/tot.png";
 import * as profileService from '../../services/profileService'
