@@ -26,7 +26,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // services
 import * as authService from "./services/authService";
-import * as profileService from"./services/profileService";
+import * as profileService from "./services/profileService";
 import * as restaurantService from "./services/restaurantService";
 import * as ttreviewService from "./services/ttreviewService";
 
@@ -38,8 +38,8 @@ const App = () => {
   const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
   const [ttreviews, setTTReviews] = useState([]);
-  
-  const [profile, setProfile] = useState(null)
+
+  const [profile, setProfile] = useState(null);
 
   const handleLogout = () => {
     authService.logout();
@@ -58,9 +58,12 @@ const App = () => {
   };
 
   const handleAddRating = async (id, ratingData) => {
-    const updatedRest = await restaurantService.createRating(id, ratingData)
-    setRestaurants(restaurants.filter(r => r._id !== updatedRest._id),updatedRest)
-  }
+    const updatedRest = await restaurantService.createRating(id, ratingData);
+    setRestaurants(
+      restaurants.filter((r) => r._id !== updatedRest._id),
+      updatedRest
+    );
+  };
 
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
@@ -68,19 +71,23 @@ const App = () => {
     navigate("/reviews");
   };
 
-  const handleDeleteTTReview = async (id) =>{
-    const deletedTTReview = await ttreviewService.delete(id)
-    setTTReviews(ttreviews.filter(r => r._id !== deletedTTReview._id))
-    return deletedTTReview
-  }
+  const handleDeleteTTReview = async (id) => {
+    const deletedTTReview = await ttreviewService.delete(id);
+    setTTReviews(ttreviews.filter((r) => r._id !== deletedTTReview._id));
+    return deletedTTReview;
+  };
 
-  useEffect(() =>{
-    const fetchProfile = async () => {
-      const data = await profileService.getProfile(user.profile)
-      setProfile(data)
+  useEffect(() => {
+    if (!user) {
+      setProfile(null);
+      return;
     }
-    fetchProfile()
-  }, [user.profile])
+    const fetchProfile = async () => {
+      const data = await profileService.getProfile(user.profile);
+      setProfile(data);
+    }
+    fetchProfile();
+  }, [user]);
 
   useEffect(() => {
     const fetchAllRestaurants = async () => {
@@ -88,7 +95,6 @@ const App = () => {
       setRestaurants(data);
     };
     const fetchAllTTReviews = async () => {
-
       const data = await ttreviewService.index();
       setTTReviews(data);
     };
@@ -98,124 +104,121 @@ const App = () => {
 
   return (
     <>
-    <main>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Landing
-              user={user}
-              restaurants={restaurants}
-              ttreviews={ttreviews}
-            />
-          }
-        />
-        <Route
-          path="/signup"
-          element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route
-          path="/login"
-          element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route path="/home" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route
-          path="/new"
-          element={
-            <ProtectedRoute user={user}>
-              <New user={user} handleAddTTReview={handleAddTTReview} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/wishlist"
-          element={
-            <ProtectedRoute user={user}>
-              <Wishlist 
-                profile={profile}
-              />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/shared"
-          element={
-            <ProtectedRoute user={user}>
-              <Shared 
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Landing
                 user={user}
+                restaurants={restaurants}
                 ttreviews={ttreviews}
-                setTTReviews={setTTReviews}
-                handleDeleteTTReview={handleDeleteTTReview}
               />
-            </ProtectedRoute>}
-        />
-        <Route
-          path="/followers"
-          element={
-            <ProtectedRoute user={user}>
-              <Followers user={user} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/following"
-          element={
-            <ProtectedRoute user={user}>
-              <Following user={user} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/visited"
-          element={
-            <ProtectedRoute user={user}>
-              <Visited user={user} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/restaurants/new"
-          element={
-            <ProtectedRoute user={user}>
-              <NewRestaurant
-                user={user}
-                handleAddRestaurant={handleAddRestaurant}
-              />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/restaurant/:id"
-          element={
-            <ProtectedRoute user={user}>
-              <RestaurantDets/>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/restaurants/rating/new"
-          element={
-            <ProtectedRoute user={user}>
-              <NewRating
-                handleAddRating={handleAddRating}
-              />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute user={user}>
-              <Profile 
-                user={user}
-                profile={profile}
-                handleLogout={handleLogout} 
-              />
-            </ProtectedRoute>
-          }
-        />
-        {/* <Route
+            }
+          />
+          <Route
+            path="/signup"
+            element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
+          />
+          <Route
+            path="/login"
+            element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route
+            path="/new"
+            element={
+              <ProtectedRoute user={user}>
+                <New user={user} handleAddTTReview={handleAddTTReview} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <ProtectedRoute user={user}>
+                <Wishlist profile={profile} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/shared"
+            element={
+              <ProtectedRoute user={user}>
+                <Shared
+                  user={user}
+                  ttreviews={ttreviews}
+                  setTTReviews={setTTReviews}
+                  handleDeleteTTReview={handleDeleteTTReview}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/followers"
+            element={
+              <ProtectedRoute user={user}>
+                <Followers user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/following"
+            element={
+              <ProtectedRoute user={user}>
+                <Following user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/visited"
+            element={
+              <ProtectedRoute user={user}>
+                <Visited user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurants/new"
+            element={
+              <ProtectedRoute user={user}>
+                <NewRestaurant
+                  user={user}
+                  handleAddRestaurant={handleAddRestaurant}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurant/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <RestaurantDets />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurants/rating/new"
+            element={
+              <ProtectedRoute user={user}>
+                <NewRating handleAddRating={handleAddRating} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute user={user}>
+                <Profile
+                  user={user}
+                  profile={profile}
+                  handleLogout={handleLogout}
+                />
+              </ProtectedRoute>
+            }
+          />
+          {/* <Route
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
@@ -223,15 +226,15 @@ const App = () => {
             </ProtectedRoute>
           }
         /> */}
-        <Route
-          path="/change-password"
-          element={
-            <ProtectedRoute user={user}>
-              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/change-password"
+            element={
+              <ProtectedRoute user={user}>
+                <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </main>
       <Nav user={user} handleLogout={handleLogout} />
     </>
