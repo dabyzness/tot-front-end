@@ -20,6 +20,12 @@ const VisitProfile = (props) => {
     isFollower = true
   }
 
+  const handleUnfollow = async (id) =>{
+    const updatedProfile = await profileService.unfollow(id)
+    setVisited(updatedProfile)
+    isFollower = false
+  }
+
   useEffect(() => {
     const fetchProfile = async () => {
       const data = await profileService.getProfile(id);
@@ -67,7 +73,7 @@ const VisitProfile = (props) => {
         </div>
         <div>
           {isFollower ? (
-            <button>Unfollow</button>
+            <button onClick={() => handleUnfollow(visited._id)}>Unfollow</button>
           ) : (
             <button onClick={()=>handleFollow(visited._id)}>Follow</button>
           )}

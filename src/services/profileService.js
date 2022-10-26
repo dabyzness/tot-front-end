@@ -24,9 +24,18 @@ async function follow(id) {
   return await res.json()
 }
 
+async function unfollow(id) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+  })
+  return await res.json()
+}
+
 
 export { 
   getAllProfiles,
   getProfile,
-  follow
+  follow,
+  unfollow
 }
