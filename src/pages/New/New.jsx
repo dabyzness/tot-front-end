@@ -14,14 +14,12 @@ const New = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddTTReview(form)
+    
   }
 
   return ( 
     <>
-      <h1>I'm the new tiktok page</h1>
-      <Link to="/restaurants/new">
-        <h2>Add New Restaurant</h2>
-      </Link>
+      <h1>Add A TikTok or Restaurant</h1>
       <h3> Add TikTokReview </h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="url-input">URL:</label>
@@ -36,6 +34,9 @@ const New = (props) => {
         />
         <button type="submit">Add</button>
       </form>
+      <Link to="/restaurants/new">
+        <h2>Add New Restaurant</h2>
+      </Link>
     </>
   );
 }
