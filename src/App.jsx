@@ -191,10 +191,21 @@ const App = () => {
             }
           />
           <Route
-            path="/restaurant/:id"
+          path="/restaurant/:id"
+          element={
+            <ProtectedRoute user={user}>
+              <RestaurantDets
+                profile={profile}/>
+            </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/restaurant/:id/new"
             element={
               <ProtectedRoute user={user}>
-                <RestaurantDets />
+                <NewRating
+                  handleAddRating={handleAddRating}
+                />
               </ProtectedRoute>
             }
           />

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const NewRating = (props) => {
+  const location = useLocation()
+  const restaurant = location.state
+  
   const [form, setForm] = useState({
     rating: 3,
     comment:''
@@ -12,7 +16,7 @@ const NewRating = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleAddRating(form);
+    props.handleAddRating(restaurant._id,form);
   };
 
   const handleButton = (val) =>{
@@ -23,9 +27,9 @@ const NewRating = (props) => {
     <>
       <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}> 
         <h1>Rating for:</h1>
-        <h1>Restaurant Name</h1>
+        <h1>{restaurant.name}</h1>
         <br />
-        <form onSubmit={handleSubmit}>
+        <div>
           <button 
             style={{margin:"0 5px 0 0"}}
             onClick={() => handleButton(1)}>
@@ -40,6 +44,8 @@ const NewRating = (props) => {
             onClick={() => handleButton(5)}>
               Underrated
           </button>
+        </div>
+        <form onSubmit={handleSubmit}>
           <br />
           <br />
           <label htmlFor="comment-input">Comment:</label>

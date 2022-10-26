@@ -1,21 +1,31 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import * as restaurantService from "../../services/restaurantService"
 import Map, { Marker } from 'react-map-gl';
 import tot from '../../assets/tot.png';
 import Loading from '../Loading/Loading';
 
+
+
 const RestaurantDets = (props) => {
   const { id } = useParams()
   const [restaurant, setRestaurant] = useState(null)
+  const [isVisited, setIsVisited] = useState(null)
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       const data = await restaurantService.show(id)
       setRestaurant(data)
+      if (props.profile.visited.some(rest => rest._id === data._id)){
+        setIsVisited(true)
+      } else {
+        setIsVisited(false)
+      }
     }
     fetchRestaurant()
-  },[id])
+  },[id, props.profile])
+
+
 
   if (!restaurant) return <Loading/>
 
@@ -28,7 +38,17 @@ const RestaurantDets = (props) => {
         <div>{restaurant.website}</div>
         <div>{restaurant.tags}</div>
         <br />
-        <button>Visited</button>
+        { isVisited ? (
+          <button>Visited</button>
+        ) : (
+          <button> 
+            <Link 
+              to={`/restaurant/${restaurant._id}/new`}
+              state={restaurant}>
+              Add Review 
+            </Link>
+          </button>
+        )}
         <br />
         <div>
           Reviews:
