@@ -189,12 +189,13 @@ const App = () => {
           path="/restaurant/:id"
           element={
             <ProtectedRoute user={user}>
-              <RestaurantDets/>
+              <RestaurantDets
+                profile={profile}/>
             </ProtectedRoute>
           }
         />
         <Route
-          path="/restaurants/rating/new"
+          path="/restaurant/:id/new"
           element={
             <ProtectedRoute user={user}>
               <NewRating
