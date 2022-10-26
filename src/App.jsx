@@ -54,16 +54,24 @@ const App = () => {
   const handleAddRestaurant = async (restaurantData) => {
     const newRestaurant = await restaurantService.create(restaurantData);
     setRestaurants([newRestaurant, ...restaurants]);
-    navigate("/restaurants");
+    navigate("/restaurant/");
   };
 
   const handleAddRating = async (id, ratingData) => {
+    console.log(id)
     const updatedRest = await restaurantService.createRating(id, ratingData);
     setRestaurants(
       restaurants.filter((r) => r._id !== updatedRest._id),
       updatedRest
     );
+    navigate(`/restaurant/${updatedRest._id}`)
   };
+
+  const handleUpdateRating = async (id, ratingid, ratingData) => {
+    const updatedRest = await restaurantService.updateRating(id,ratingid,ratingData)
+    setRestaurants(restaurants.filter((r) => r._id !== updatedRest._id), updatedRest)
+    navigate(`/restaurant/${updatedRest._id}`)
+  }
 
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
@@ -195,7 +203,9 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
               <RestaurantDets
-                profile={profile}/>
+                user={user}
+                profile={profile}
+                handleUpdateRating={handleUpdateRating}/>
             </ProtectedRoute>
             }
           />

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 const NewRating = (props) => {
   const location = useLocation()
   const restaurant = location.state
-  
+
   const [form, setForm] = useState({
     rating: 3,
     comment:''
@@ -50,7 +50,6 @@ const NewRating = (props) => {
           <br />
           <label htmlFor="comment-input">Comment:</label>
           <input
-            required
             autoComplete="off"
             type="text"
             name="comment"

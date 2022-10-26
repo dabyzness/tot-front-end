@@ -54,4 +54,27 @@ const createRating = async (id, ratingData) => {
   }
 };
 
-export { index, create, show, createRating };
+const updateRating = async (id,ratingid,ratingData) => {
+  console.log("Update in Restaurant Service")
+  try {
+    const res = await fetch(`${BASE_URL}/${id}/rating/${ratingid}`, {
+      method: 'PATCH',
+      headers: {
+        "Authorization": `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(ratingData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export{
+  index,
+  create,
+  show,
+  createRating,
+  updateRating,
+}
