@@ -23,7 +23,6 @@ const Shared = (props) => {
 
   const buttonFunction = async (id) =>{
     const deletedVid = await props.handleDeleteTTReview(id)
-    console.log(deletedVid)
     setShared(shared.filter(v => v._id !== deletedVid._id))
     if (idx > 0){
       setIdx(idx-1)

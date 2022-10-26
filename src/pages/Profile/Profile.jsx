@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./Profile.module.css";
 import tot from "../../assets/tot.png";
 import Loading from "../Loading/Loading";
 
 
 const Profile = (props) => {
+  const { id } = useParams()
 
   if (!props.profile) return <Loading/>
 

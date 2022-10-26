@@ -16,8 +16,17 @@ async function getProfile(id) {
   return await res.json()
 }
 
+async function follow(id) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: 'PATCH',
+    headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+  })
+  return await res.json()
+}
+
 
 export { 
   getAllProfiles,
-  getProfile
+  getProfile,
+  follow
 }

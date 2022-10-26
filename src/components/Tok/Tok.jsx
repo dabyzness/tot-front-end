@@ -18,7 +18,6 @@ const Tok = (props) => {
 
   return (
     <div className="embeded-tok">
-      {console.log(props.vidID)}
       <div style={iframe_container}>
         <iframe
           title="TikTok"

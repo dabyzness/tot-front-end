@@ -66,7 +66,6 @@ const createRating = async (id, ratingData) => {
 }
 
 const updateRating = async (id,ratingid,ratingData) => {
-  console.log("Update in Restaurant Service")
   try {
     const res = await fetch(`${BASE_URL}/${id}/rating/${ratingid}`, {
       method: 'PATCH',
