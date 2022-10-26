@@ -1,36 +1,32 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import * as restaurantService from "../../services/restaurantService"
 import Map, { Marker } from 'react-map-gl';
 import tot from '../../assets/tot.png';
+import Loading from '../Loading/Loading';
 
 const RestaurantDets = (props) => {
-  const restaurant = {
-    _id: {
-      $oid: '635443a1f4bdc00112f34c3d',
-    },
-    name: 'McDonalds',
-    location: {
-      latitude: '42.111',
-      longitude: '42.111',
-    },
-    website: 'https://www.mcdonalds.com/us/en-us.html',
-    cuisineType: ['Fancy'],
-    tags: ['First Date'],
-    createdAt: {
-      $date: '2022-10-22T19:25:21.741Z',
-    },
-    updatedAt: {
-      $date: '2022-10-22T19:25:21.741Z',
-    },
-    __v: 0,
-  };
+  const { id } = useParams()
+  const [restaurant, setRestaurant] = useState(null)
+
+  useEffect(() => {
+    const fetchRestaurant = async () => {
+      const data = await restaurantService.show(id)
+      setRestaurant(data)
+    }
+    fetchRestaurant()
+  },[id])
+
+  if (!restaurant) return <Loading/>
 
   return (
     <>
-      <div><h1>Restaurant Name</h1></div>
+      <div><h1>{restaurant.name}</h1></div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <div>Cuisine Type</div>
+        <div>{restaurant.cuisineType}</div>
         <div>Rating</div>
-        <div>Website</div>
-        <div>Tags</div>
+        <div>{restaurant.website}</div>
+        <div>{restaurant.tags}</div>
         <br />
         <button>Visited</button>
         <br />
@@ -51,15 +47,15 @@ const RestaurantDets = (props) => {
 
       <Map
         initialViewState={{
-          longitude: -73.99130137,
-          latitude: 40.7012968,
+          longitude: Number(restaurant.location.longitude),
+          latitude: Number(restaurant.location.latitude),
           zoom: 15,
         }}
         style={{ width: '100vw', height: '200px' }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
-        <Marker longitude={-73.99130137}
-          latitude={40.7012968} anchor="center">
+        <Marker longitude={Number(restaurant.location.longitude)}
+          latitude={ Number(restaurant.location.latitude)} anchor="center">
           <p style={{ marginBottom: '-5px', color: 'black',fontSize:"25px", fontWeight:"bolder",
           backgroundColor:"rgba(255,255,255,0.75)",
           fontFamily:"quicksand"}}>
