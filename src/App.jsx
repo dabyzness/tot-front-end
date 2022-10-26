@@ -15,6 +15,7 @@ import NewRestaurant from "./pages/NewRestaurant/NewRestaurant";
 import RestaurantDets from "./pages/RestaurantDets/RestaurantDets";
 import NewRating from "./pages/NewRating/NewRating";
 import Profile from "./pages/Profile/Profile";
+import VisitProfile from "./pages/VisitProfile/VisitProfile";
 import Followers from "./pages/Followers/Followers";
 import Following from "./pages/Following/Following";
 import Shared from "./pages/Shared/Shared";
@@ -58,7 +59,6 @@ const App = () => {
   };
 
   const handleAddRating = async (id, ratingData) => {
-    console.log(id)
     const updatedRest = await restaurantService.createRating(id, ratingData);
     setRestaurants(
       restaurants.filter((r) => r._id !== updatedRest._id),
@@ -236,6 +236,15 @@ const App = () => {
                   profile={profile}
                   handleLogout={handleLogout}
                 />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <VisitProfile
+                  profile={profile}/>
               </ProtectedRoute>
             }
           />

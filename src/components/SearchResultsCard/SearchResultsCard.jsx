@@ -7,17 +7,19 @@ const SearchResultsCard = ({ result, typeQuery }) => {
   if (result.wishlist) {
     return (
       <div className={styles.container}>
-        <img className={styles.profileImg} src={tot} alt="profile-tot" />
-        <div className={styles.infoContainer}>
-          <h4>{result.name}</h4>
-          <p>
-            Followers: {result.followers.length} Following:{" "}
-            {result.following.length}
-          </p>
-          <p>
-            Shared: {result.shared.length} Visited: {result.visited.length}
-          </p>
-        </div>
+        <Link to={`/profile/${result._id}`}>
+          <img className={styles.profileImg} src={tot} alt="profile-tot" />
+          <div className={styles.infoContainer}>
+            <h4>{result.name}</h4>
+            <p>
+              Followers: {result.followers.length} Following:{" "}
+              {result.following.length}
+            </p>
+            <p>
+              Shared: {result.shared.length} Visited: {result.visited.length}
+            </p>
+          </div>
+        </Link>
       </div>
     );
   }

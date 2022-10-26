@@ -30,10 +30,6 @@ const RatingCard = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("I'm submitting");
-    console.log(form)
-    console.log(props.restaurant._id)
-    console.log(props.rating._id)
     props.handleUpdateRating(props.restaurant._id, props.rating._id, form);
     setIsEdit(false)
 
