@@ -40,7 +40,6 @@ const Landing = ({ user, restaurants, ttreviews }) => {
     mapRef.current.resize();
   }, []);
 
-  
   return (
     <main className={styles.container}>
       {/* <h1>Hello, {user ? user.name : "Tot"}</h1> */}
@@ -98,7 +97,7 @@ const Landing = ({ user, restaurants, ttreviews }) => {
         Large
       </button>
       <h3>Tastes of TikTok</h3>
-      <TTRow ttreviews={ttreviews}/>
+      <TTRow ttreviews={ttreviews} />
     </main>
   );
 };
