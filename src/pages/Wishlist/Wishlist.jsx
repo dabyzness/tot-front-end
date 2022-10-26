@@ -18,16 +18,24 @@ const Wishlist = (props) => {
 
   let currentVideo = wishlist[idx]
   
+  let isEmpty = (wishlist.length === 0)
+
+  console.log(isEmpty)
+
   return ( 
     <>
       <h1>Wishlist</h1>
-      <TTVidFull 
-        buttonText="Remove"
-        dbID={currentVideo._id}
-        vidID={currentVideo.vidID}
-        nextVideo={nextVideo}
-        prevVideo={prevVideo}
-        />
+      { isEmpty ? (
+        <h2>Your wishlist is empty</h2>
+      ) : (
+        <TTVidFull 
+          buttonText="Remove"
+          dbID={currentVideo._id}
+          vidID={currentVideo.vidID}
+          nextVideo={nextVideo}
+          prevVideo={prevVideo}
+          />
+      )}
     </>
   );
 }
