@@ -13,6 +13,8 @@ const VisitProfile = (props) => {
   const [visited, setVisited] = useState(null)
   
   let isFollower = false
+  console.log("props profile",props.profile)
+  console.log("visited",visited)
 
   const handleFollow = async (id) =>{
     const updatedProfile = await profileService.follow(id)
@@ -30,10 +32,11 @@ const VisitProfile = (props) => {
   
 
 
-  if (!visited) return <Loading/>
+  if (!visited || !props.profile) return <Loading/>
 
   return (
     <>
+      {isFollower = visited.followers.some(p => p._id === props.profile._id)}
       <div className="img-holder">
         <img src={tot} alt="tot" className={styles.totavi} />
       </div>
