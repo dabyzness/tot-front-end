@@ -4,6 +4,7 @@ import * as restaurantService from "../../services/restaurantService"
 import Map, { Marker } from 'react-map-gl';
 import tot from '../../assets/tot.png';
 import Loading from '../Loading/Loading';
+import RatingCard from '../../components/RatingCard/RatingCard';
 
 
 
@@ -25,46 +26,12 @@ const RestaurantDets = (props) => {
     fetchRestaurant()
   },[id, props.profile])
 
-
+  let hasRatings = null
 
   if (!restaurant) return <Loading/>
 
   return (
     <>
-      <div><h1>{restaurant.name}</h1></div>
-      <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <div>{restaurant.cuisineType}</div>
-        <div>Rating</div>
-        <div>{restaurant.website}</div>
-        <div>{restaurant.tags}</div>
-        <br />
-        { isVisited ? (
-          <button>Visited</button>
-        ) : (
-          <button> 
-            <Link 
-              to={`/restaurant/${restaurant._id}/new`}
-              state={restaurant}>
-              Add Review 
-            </Link>
-          </button>
-        )}
-        <br />
-        <div>
-          Reviews:
-          <div>
-            Review 1
-          </div>
-          <div>
-            Review 2
-          </div>
-          <div>
-            Review 3
-          </div>
-        </div>
-      </div>
-      <br />
-
       <Map
         initialViewState={{
           longitude: Number(restaurant.location.longitude),
@@ -84,6 +51,53 @@ const RestaurantDets = (props) => {
           <img src={tot} alt="" style={{ height: '60px' }} />
         </Marker>
       </Map>
+      {hasRatings = (restaurant?.ratings.length > 0)}
+      <div><h1>{restaurant.name}</h1></div>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+        <div>{restaurant.cuisineType}</div>
+        <div>Rating</div>
+        <div>{restaurant.website}</div>
+        <div>{restaurant.tags}</div>
+        <br />
+        { isVisited ? (
+          <button>
+            Update Review
+          </button>
+        ) : (
+          <button> 
+            <Link 
+              to={`/restaurant/${restaurant._id}/new`}
+              state={restaurant}>
+              Add Review 
+            </Link>
+          </button>
+        )}
+        <br />
+        {hasRatings ? (
+          <div>
+            Ratings( {restaurant.ratings.length} ):
+            {restaurant.ratings.map(rating =>
+              <RatingCard 
+                rating={rating} 
+                user={props.user}
+                restaurant={restaurant}
+                handleUpdateRating={props.handleUpdateRating}
+                />
+              
+            )}
+          </div>
+        ) : (
+          <div>
+            Ratings:
+            <div>
+              This has no ratings 
+            </div>
+          </div>
+        )}
+      </div>
+      <br />
+
+      
     </>
   );
 };
