@@ -24,16 +24,18 @@ const SearchResultsCard = ({ result, typeQuery }) => {
 
   return (
     <div className={styles.container}>
-      <img
-        className={styles.restaurantImg}
-        src="https://lh5.googleusercontent.com/p/AF1QipPgHYE4DbQFDRZ3CT9CaY8LTkTE4dw6_3d_zpyO=w408-h306-k-no"
-        alt={result.name}
-      />
-      <div className={styles.infoContainer}>
-        <h4>{result.name}</h4>
-        <p>Cuisine-type: {result.cuisineType[0]}</p>
-        <p>TikToks: {1}</p>
-      </div>
+      <Link to={`../restaurant/${result._id}`}>
+        <img
+          className={styles.restaurantImg}
+          src="https://lh5.googleusercontent.com/p/AF1QipPgHYE4DbQFDRZ3CT9CaY8LTkTE4dw6_3d_zpyO=w408-h306-k-no"
+          alt={result.name}
+          />
+        <div className={styles.infoContainer}>
+          <h4>{result.name}</h4>
+          <p>Cuisine-type: {result.cuisineType[0]}</p>
+          <p>TikToks: {1}</p>
+        </div>
+      </Link>
     </div>
   );
 };
