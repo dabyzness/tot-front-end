@@ -55,6 +55,12 @@ h1 {
 }
 
 h3 {
+  margin-left: 16px;
   width: 80%;
   text-align: left;
+}
+
+.form-container{
+  display: flex;
+  justify-content: center;
 }

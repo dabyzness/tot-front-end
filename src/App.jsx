@@ -76,7 +76,6 @@ const App = () => {
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
     setTTReviews([newTTReview, ...ttreviews]);
-    navigate("/reviews");
   };
 
   const handleDeleteTTReview = async (id) => {

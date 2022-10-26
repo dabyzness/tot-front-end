@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
+import Button from "@mui/material/Button";
+
+import SimpleSnackbar from "../../components/SuccessSnackbar";
+
 
 const New = (props) => {
   
@@ -7,20 +11,25 @@ const New = (props) => {
     url:''
   })
   
+  const [isDisabled, setIsDisabled] = useState(true)
+
   const handleChange = ({target}) => {
+    if (target.value ) {setIsDisabled(false)}
+    if (target.value === "" ) {setIsDisabled(true)}
     setForm({...form, [target.name]: target.value})
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddTTReview(form)
-    
+    setForm({url:''})
   }
 
   return ( 
     <>
       <h1>Add A TikTok or Restaurant</h1>
       <h3> Add TikTokReview </h3>
+      <div className="form-container">
       <form onSubmit={handleSubmit}>
         <label htmlFor="url-input">URL:</label>
         <input
@@ -32,10 +41,13 @@ const New = (props) => {
           placeholder="TikTok video url"
           onChange={handleChange}
         />
-        <button type="submit">Add</button>
+        <button type="submit" disabled={isDisabled}>
+          <SimpleSnackbar /> 
+        </button>
       </form>
+      </div>
       <Link to="/restaurants/new">
-        <h2>Add New Restaurant</h2>
+        <h3>Add New Restaurant</h3>
       </Link>
     </>
   );
