@@ -12,6 +12,8 @@ import Search from "./pages/Search/Search";
 import New from "./pages/New/New";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import NewRestaurant from "./pages/NewRestaurant/NewRestaurant";
+import RestaurantDets from "./pages/RestaurantDets/RestaurantDets";
+import NewRating from "./pages/NewRating/NewRating";
 import Profile from "./pages/Profile/Profile";
 import Followers from "./pages/Followers/Followers";
 import Following from "./pages/Following/Following";
@@ -30,7 +32,6 @@ import * as ttreviewService from "./services/ttreviewService";
 
 // styles
 import "./App.css";
-import RestaurantDets from "./pages/RestaurantDets/RestaurantDets";
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -56,6 +57,11 @@ const App = () => {
     navigate("/restaurants");
   };
 
+  const handleAddRating = async (id, ratingData) => {
+    const updatedRest = await restaurantService.createRating(id, ratingData)
+    setRestaurants(restaurants.filter(r => r._id !== updatedRest._id),updatedRest)
+  }
+
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
     setTTReviews([newTTReview, ...ttreviews]);
@@ -72,7 +78,6 @@ const App = () => {
     const fetchProfile = async () => {
       const data = await profileService.getProfile(user.profile)
       setProfile(data)
-      
     }
     fetchProfile()
   }, [user.profile])
@@ -181,10 +186,20 @@ const App = () => {
           }
         />
         <Route
-          path="/restaurants/test"
+          path="/restaurant/:id"
           element={
             <ProtectedRoute user={user}>
               <RestaurantDets/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurants/rating/new"
+          element={
+            <ProtectedRoute user={user}>
+              <NewRating
+                handleAddRating={handleAddRating}
+              />
             </ProtectedRoute>
           }
         />
