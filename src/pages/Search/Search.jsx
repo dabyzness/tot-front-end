@@ -46,19 +46,21 @@ const Search = () => {
         <option value="cuisine">Cuisine</option>
       </select>
 
-      <div className={styles.tagContainer}>
         {typeQuery === "tags" &&
-          tagNames
-            .sort((a, b) => (a < b ? -1 : 1))
-            .map((tagName) => (
-              <Tag
-                key={tagName}
-                name={tagName}
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-              />
-            ))}
-      </div>
+          <div className={styles.tagContainer}>
+            {tagNames
+              .sort((a, b) => (a < b ? -1 : 1))
+              .map((tagName) => (
+                <Tag
+                  key={tagName}
+                  name={tagName}
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                />
+              ))
+            }
+          </div>
+        }
 
       {results.length !== 0 && (
         <SearchResults results={results} typeQuery={typeQuery} />
