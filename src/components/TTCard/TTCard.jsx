@@ -10,7 +10,7 @@ import Modal from "@mui/material/Modal";
 import clappertot from "../../assets/clappertot.png";
 import styles from "./TTCard.module.css";
 
-const TTCard = ({ ttreview }) => {
+const TTCard = ({ ttreview, handleAddToWishlist, user }) => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -61,7 +61,11 @@ const TTCard = ({ ttreview }) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Tok ttreview={ttreview} />
+            <Tok
+              ttreview={ttreview}
+              user={user}
+              handleAddToWishlist={handleAddToWishlist}
+            />
           </Typography>
         </Box>
       </Modal>
