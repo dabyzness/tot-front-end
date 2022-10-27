@@ -30,26 +30,17 @@ const TTCard = ({ ttreview }) => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>
+      <Button sx={{ p:"0px", marginRight: "10px"}}onClick={handleOpen}>
         <div className={styles.tcard}>
           {!hasError ? (
             <img
-              style={{
-                // display: "flex",
-                // flexDirection: "row",
-                width: "90px",
-                height: "160px",
-              }}
+              className={styles.timg}
               src={ttreview.staticImg}
               alt="ttimg"
               onError={() => setHasError(true)}
             />
           ) : (
-            <img
-              style={{ width: "90px", height: "160px" }}
-              src={clappertot}
-              alt="clappertot"
-            />
+            <img className={styles.timg} src={clappertot} alt="clappertot" />
           )}
         </div>
       </Button>
