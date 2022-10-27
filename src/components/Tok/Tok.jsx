@@ -29,14 +29,25 @@ const Tok = (props) => {
         />
       </div>
       <br />
-      {props.user && (
+      {props.profile && (
         <div>
           <button
-            onClick={() =>
-              props.handleAddToWishlist(props.user.profile, props.ttreview._id)
+            disabled={
+              props.profile.wishlist.find(
+                ({ _id }) => _id === props.ttreview._id
+              )
+                ? "true"
+                : "false"
             }
+            onClick={(e) => {
+              props.handleAddToWishlist(props.profile._id, props.ttreview._id);
+            }}
           >
-            Add To Wishlist
+            {props.profile.wishlist.find(
+              ({ _id }) => _id === props.ttreview._id
+            )
+              ? "Added to Wishlist \u2713"
+              : "Add to Wishlist"}
           </button>
         </div>
       )}
