@@ -64,18 +64,26 @@ const App = () => {
       restaurants.filter((r) => r._id !== updatedRest._id),
       updatedRest
     );
-    navigate(`/restaurant/${updatedRest._id}`)
+    navigate(`/restaurant/${updatedRest._id}`);
   };
 
   const handleUpdateRating = async (id, ratingid, ratingData) => {
-    const updatedRest = await restaurantService.updateRating(id,ratingid,ratingData)
-    setRestaurants(restaurants.filter((r) => r._id !== updatedRest._id), updatedRest)
-    navigate(`/restaurant/${updatedRest._id}`)
-  }
+    const updatedRest = await restaurantService.updateRating(
+      id,
+      ratingid,
+      ratingData
+    );
+    setRestaurants(
+      restaurants.filter((r) => r._id !== updatedRest._id),
+      updatedRest
+    );
+    navigate(`/restaurant/${updatedRest._id}`);
+  };
 
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
     setTTReviews([newTTReview, ...ttreviews]);
+    navigate("/reviews");
   };
 
   const handleDeleteTTReview = async (id) => {
@@ -92,7 +100,7 @@ const App = () => {
     const fetchProfile = async () => {
       const data = await profileService.getProfile(user.profile);
       setProfile(data);
-    }
+    };
     fetchProfile();
   }, [user]);
 
@@ -103,8 +111,27 @@ const App = () => {
     };
     const fetchAllTTReviews = async () => {
       const data = await ttreviewService.index();
-      setTTReviews(data);
+
+      const refreshedData = await Promise.all(
+        data.map(async (review) => {
+          if (
+            !review.expiresAt ||
+            review.expiresAt < new Date().getTime() / 1000
+          ) {
+            const refreshedReview = await ttreviewService.refreshTTData(
+              review._id
+            );
+
+            return refreshedReview;
+          }
+
+          return review;
+        })
+      );
+
+      setTTReviews(refreshedData);
     };
+
     fetchAllRestaurants();
     fetchAllTTReviews();
   }, []);
@@ -198,23 +225,22 @@ const App = () => {
             }
           />
           <Route
-          path="/restaurant/:id"
-          element={
-            <ProtectedRoute user={user}>
-              <RestaurantDets
-                user={user}
-                profile={profile}
-                handleUpdateRating={handleUpdateRating}/>
-            </ProtectedRoute>
+            path="/restaurant/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <RestaurantDets
+                  user={user}
+                  profile={profile}
+                  handleUpdateRating={handleUpdateRating}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/restaurant/:id/new"
             element={
               <ProtectedRoute user={user}>
-                <NewRating
-                  handleAddRating={handleAddRating}
-                />
+                <NewRating handleAddRating={handleAddRating} />
               </ProtectedRoute>
             }
           />
@@ -242,8 +268,7 @@ const App = () => {
             path="/profile/:id"
             element={
               <ProtectedRoute user={user}>
-                <VisitProfile
-                  profile={profile}/>
+                <VisitProfile profile={profile} />
               </ProtectedRoute>
             }
           />

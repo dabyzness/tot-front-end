@@ -1,49 +1,55 @@
-import * as tokenService from "./tokenService"
+import * as tokenService from "./tokenService";
 
-const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/ttreviews`
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/ttreviews`;
 
 const index = async () => {
   try {
-    const res = await fetch(BASE_URL, {})
-    return res.json()
+    const res = await fetch(BASE_URL, {});
+    return res.json();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 const create = async (ttreviewData) => {
   try {
     const res = await fetch(BASE_URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        "Authorization": `Bearer ${tokenService.getToken()}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${tokenService.getToken()}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(ttreviewData)
-    })
-    return res.json()
+      body: JSON.stringify(ttreviewData),
+    });
+    return res.json();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 const deleteTTReview = async (id) => {
   try {
     const res = await fetch(`${BASE_URL}/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${tokenService.getToken()}`,
+        Authorization: `Bearer ${tokenService.getToken()}`,
       },
-    })
-    return res.json()
+    });
+    return res.json();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
+const refreshTTData = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: "PATCH",
+    });
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
 
-export{
-  index,
-  create,
-  deleteTTReview as delete,
-}
+export { index, create, deleteTTReview as delete, refreshTTData };
