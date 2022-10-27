@@ -3,6 +3,7 @@ import LandingResRow from "../../components/LandingResRow/LandingResRow";
 
 import Map, { Marker, Popup } from "react-map-gl";
 import { useState, useMemo, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 import tot from "../../assets/tot.png";
 import styles from "./Landing.module.css";
@@ -15,6 +16,8 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
     latitude: 40.7012968,
     zoom: 15,
   });
+
+  const navigate = useNavigate();
 
   const mapRef = useRef();
 
@@ -69,10 +72,13 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
               onClose={() => setPopupViewState(null)}
             >
               <div>
-                <h3>{popupViewState.name}</h3>
-                <p>Address: {popupViewState.cuisineType[0]}</p>
-                <p>Phone: {popupViewState.tags[0]}</p>
-                <a href={popupViewState.website}>{popupViewState.website}</a>
+                <p style={{ fontSize: "1.1rem" }}>{popupViewState.name}</p>
+                <button
+                  style={{ transform: "scale(75%)" }}
+                  onClick={() => navigate(`/restaurant/${popupViewState._id}`)}
+                >
+                  Go to page
+                </button>
               </div>
             </Popup>
           )}
