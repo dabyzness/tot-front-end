@@ -44,7 +44,7 @@ const LoginForm = (props) => {
             value={formData.email}
             name="email"
             onChange={handleChange}
-            className="input"
+            className={styles.input}
             required
           />
         </div>
@@ -59,7 +59,8 @@ const LoginForm = (props) => {
             value={formData.pw}
             name="pw"
             onChange={handleChange}
-            className="input"
+            className={styles.input}
+            required
           />
         </div>
         <div>
