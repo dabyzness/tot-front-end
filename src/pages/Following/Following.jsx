@@ -3,13 +3,12 @@ import ProfileLI from "../../components/ProfileLI/ProfileLI";
 const Following = (props) => {
   return ( 
     <>
-      <h1> Profile Name </h1>
-      <h3> Following (#) Accounts</h3>
+      <h1>{props.profile.name}</h1>
+      <h3> Following ( {props.profile.following.length} )</h3>
       <ul>
-        <ProfileLI/>
-        <ProfileLI/>
-        <ProfileLI/>
-        <ProfileLI/>
+        {props.profile.following.map(follow => 
+          <ProfileLI key={follow._id} profile={follow}/>
+          )}
       </ul>
     </>
   );

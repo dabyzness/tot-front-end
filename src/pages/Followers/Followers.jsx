@@ -4,12 +4,11 @@ const Followers = (props) => {
   return ( 
     <>
       <h1>Profile Name</h1>
-      <h3>Number of followers (#)</h3>
+      <h3>Number of followers ( {props.profile.followers.length} )</h3>
       <ul>
-        <ProfileLI/>
-        <ProfileLI/>
-        <ProfileLI/>
-        <ProfileLI/>
+        {props.profile.followers.map(follower => 
+          <ProfileLI key={follower._id} profile={follower}/>
+          )}
       </ul>
     </>
   );
