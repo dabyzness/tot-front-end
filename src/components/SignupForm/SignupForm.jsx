@@ -22,9 +22,6 @@ const SignupForm = (props) => {
     });
   };
 
-  const handleChangePhoto = (evt) => {
-    setPhotoData({ photo: evt.target.files[0] });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,17 +97,6 @@ const SignupForm = (props) => {
             value={passwordConf}
             name="passwordConf"
             onChange={handleChange}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <label htmlFor="photo-upload" className={styles.label}>
-            Upload Photo
-          </label>
-          <input
-            type="file"
-            id="photo-upload"
-            name="photo"
-            onChange={handleChangePhoto}
           />
         </div>
         <div className={styles.inputContainer}>
