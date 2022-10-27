@@ -7,6 +7,7 @@ const LoginTabs = (props) => {
   return (
     <div id="button-holder">
       <button
+        id="tab"
         style={{ marginRight: "auto" }}
         onClick={() => {
           navigate("/login");
@@ -15,7 +16,7 @@ const LoginTabs = (props) => {
       >
         Log In
       </button>
-      <div id="spacer" style={{ width: "100%", borderBottom: "2px solid black" }}></div>
+      <div id="spacer" style={{ width: "100%", borderBottom: "2px solid black", borderRadius:"3px" }}></div>
       <button
         style={{ marginLeft: "auto" }}
         onClick={() => {
