@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 
 import SearchResults from "../../components/SearchResults/SearchResults.jsx";
 import { search } from "../../services/searchService.js";
+import Tag from "../../components/Tag/Tag";
+import { tagNames } from "../../assets/data/tagNames.js";
+import styles from "./Search.module.css";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,6 +28,7 @@ const Search = () => {
   return (
     <main>
       <input
+        className={styles.inputSearch}
         type="text"
         placeholder="search"
         value={searchTerm}
@@ -41,6 +45,20 @@ const Search = () => {
         <option value="tags">Tags</option>
         <option value="cuisine">Cuisine</option>
       </select>
+
+      <div className={styles.tagContainer}>
+        {typeQuery === "tags" &&
+          tagNames
+            .sort((a, b) => (a < b ? -1 : 1))
+            .map((tagName) => (
+              <Tag
+                key={tagName}
+                name={tagName}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+              />
+            ))}
+      </div>
 
       {results.length !== 0 && (
         <SearchResults results={results} typeQuery={typeQuery} />

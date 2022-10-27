@@ -1,0 +1,29 @@
+.tagContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0.5rem;
+  height: 14vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tagContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.inputSearch {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  width: 30vw;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.inputSearch:focus {
+  width: calc(100% - 3rem);
+}
