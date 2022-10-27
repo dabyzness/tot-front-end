@@ -23,7 +23,6 @@ const New = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form)
     props.handleAddTTReview(form);
     setForm({ url: '', rest: props.restaurants[0]._id });
   };
