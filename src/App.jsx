@@ -102,6 +102,10 @@ const App = () => {
     });
   };
 
+  const removeVisitedRestaurant = (remove) => {
+    setRestaurants(restaurants.filter(rest => rest._id !== remove))
+  }
+
   const handleRemoveFromWishlist = async (profileId, ttReviewId) => {
     const wishlist = await profileService.removeFromWishlist(
       profileId,
@@ -263,6 +267,7 @@ const App = () => {
                   user={user}
                   profile={profile}
                   handleUpdateRating={handleUpdateRating}
+                  removeVisitedRestaurant={removeVisitedRestaurant}
                 />
               </ProtectedRoute>
             }

@@ -12,7 +12,8 @@ const RestaurantDets = (props) => {
   const [isVisited, setIsVisited] = useState(null);
 
   const deleteRating = async(id,ratingid) =>{
-    const deletedRating = await restaurantService.deleteRating(id,ratingid);
+    props.removeVisitedRestaurant(id)
+    const updatedRestaurant = await restaurantService.deleteRating(id,ratingid);
     const fetchRestaurant = async () => {
       const data = await restaurantService.show(id);
       setRestaurant(data);
