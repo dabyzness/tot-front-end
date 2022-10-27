@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { useState } from 'react';
 
-import SuccessSnackbar from "../../components/SuccessSnackbar";
-import NewRestaurant from "../NewRestaurant/NewRestaurant";
+import SuccessSnackbar from '../../components/SuccessSnackbar';
+import NewRestaurant from '../../components/NewRestaurant/NewRestaurant';
 
 const New = (props) => {
   const [form, setForm] = useState({
-    url: "",
+    url: '',
+    rest: props.restaurants[0]._id,
   });
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -15,7 +15,7 @@ const New = (props) => {
     if (target.value) {
       setIsDisabled(false);
     }
-    if (target.value === "") {
+    if (target.value === '' || target.value === 'other') {
       setIsDisabled(true);
     }
     setForm({ ...form, [target.name]: target.value });
@@ -23,8 +23,9 @@ const New = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(form)
     props.handleAddTTReview(form);
-    setForm({ url: "" });
+    setForm({ url: '', rest: props.restaurants[0]._id });
   };
 
   return (
@@ -43,13 +44,39 @@ const New = (props) => {
             placeholder="TikTok URL"
             onChange={handleChange}
           />
-
+          Restaurant:
+          <br />
+          <select
+            required
+            type="text"
+            name="rest"
+            value={form.rest}
+            onChange={handleChange}
+          >
+            {props.restaurants.map((restaurant) => (
+              <option key={restaurant._id} value={restaurant._id}>
+                {restaurant.name}
+              </option>
+            ))}
+            <option value="other">Not listed above...</option>
+          </select>
+          <br />
           <SuccessSnackbar disabled={isDisabled} />
         </form>
       </div>
-      <div className="form-container">
-        <NewRestaurant handleAddRestaurant={props.handleAddRestaurant} disabled={isDisabled} handleChange={handleChange}/>
-      </div>
+      <br />
+      <br />
+      {form.rest === 'other' ? (
+        <div className="form-container">
+          <NewRestaurant
+            handleAddRestaurant={props.handleAddRestaurant}
+            disabled={isDisabled}
+            handleChange={handleChange}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
