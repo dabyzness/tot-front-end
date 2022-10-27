@@ -11,6 +11,21 @@ const RestaurantDets = (props) => {
   const [restaurant, setRestaurant] = useState(null);
   const [isVisited, setIsVisited] = useState(null);
 
+  const deleteRating = async(id,ratingid) =>{
+    const deletedRating = await restaurantService.deleteRating(id,ratingid);
+    const fetchRestaurant = async () => {
+      const data = await restaurantService.show(id);
+      setRestaurant(data);
+      if (props.profile.visited.some((rest) => rest._id === data._id)) {
+        setIsVisited(true);
+      } else {
+        setIsVisited(false);
+      }
+    }
+    fetchRestaurant()
+  }
+
+
   useEffect(() => {
     const fetchRestaurant = async () => {
       const data = await restaurantService.show(id);
@@ -86,6 +101,7 @@ const RestaurantDets = (props) => {
                 user={props.user}
                 restaurant={restaurant}
                 handleUpdateRating={props.handleUpdateRating}
+                deleteRating={deleteRating}
               />
             ))}
           </div>
