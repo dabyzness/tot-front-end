@@ -45,6 +45,32 @@ h1 {
   margin: 20px 0 20px 0;
   text-align: center;
 }
+button.inactive {
+  background-color: var(--blue);
+  color: var(--tan);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+}
+
+button.active:hover {
+  background-color: var(--tan);
+  color: var(--black);
+}
+
+button.inactive:hover {
+  cursor: pointer;
+  background-color: #414f5b;
+  /* color: var(--blue); */
+}
+
+button.active {
+  border: 2px solid var(--blue);
+  border-bottom: 3px solid var(--tan);
+}
+
+button {
+  min-width: fit-content;
+}
 
 label {
   cursor: pointer;
@@ -110,4 +136,9 @@ h3 {
 a {
   text-decoration: none;
   color: black;
+}
+
+a:hover {
+  color: black;
+
 }
