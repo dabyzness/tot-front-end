@@ -1,12 +1,24 @@
 import { useState } from "react";
-
+import RestaurantSnackbar from "../../components/RestaurantSnackBar/RestaurantSnackBar";
 const NewRestaurant = (props) => {
   const [url, setUrl] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleAddRestaurant(url);
+    setUrl("")
   };
+
+  const handleResChange = (e) => {
+    if (e.target.value) {
+      setIsDisabled(false);
+    }
+    if (e.target.value === "") {
+      setIsDisabled(true);
+    }
+    setUrl(e.target.value)
+  }
 
   return (
     <div>
@@ -16,9 +28,11 @@ const NewRestaurant = (props) => {
           type="text"
           name="url"
           value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          placeholder="GoogleMaps URL"
+          onChange={handleResChange}
+          // onChange={(e) => setUrl(e.target.value)}
         />
-        <button type="submit">Add</button>
+        <RestaurantSnackbar disabled={isDisabled} />
       </form>
     </div>
   );
