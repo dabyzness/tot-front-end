@@ -191,7 +191,7 @@ const App = () => {
             path="/followers"
             element={
               <ProtectedRoute user={user}>
-                <Followers user={user} />
+                <Followers user={user} profile={profile}/>
               </ProtectedRoute>
             }
           />
@@ -199,7 +199,7 @@ const App = () => {
             path="/following"
             element={
               <ProtectedRoute user={user}>
-                <Following user={user} />
+                <Following user={user} profile={profile}/>
               </ProtectedRoute>
             }
           />
