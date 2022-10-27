@@ -13,8 +13,6 @@ const VisitProfile = (props) => {
   const [visited, setVisited] = useState(null)
   
   let isFollower = false
-  console.log("props profile",props.profile)
-  console.log("visited",visited)
 
   const handleFollow = async (id) =>{
     const updatedProfile = await profileService.follow(id)
@@ -50,28 +48,28 @@ const VisitProfile = (props) => {
       <div className="page">
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <Link to="/following" state={visited.following}> 
+            {/* <Link to="/following" state={visited.following}>  */}
               <h2>{visited.following.length}</h2>
               <p>Following</p>
-            </Link>
+            {/* </Link> */}
           </div>
           <div className={styles.stat}>
-            <Link to="/followers" state={visited.followers}>
+            {/* <Link to="/followers" state={visited.followers}> */}
               <h2>{visited.followers.length}</h2>
               <p>Followers</p>
-            </Link>
+            {/* </Link> */}
           </div>
           <div className={styles.stat}>
-            <Link to="/shared" state={visited.shared}>
+            {/* <Link to="/shared" state={visited.shared}> */}
               <h2>{visited.shared.length}</h2>
               <p>Shared Reviews</p>
-            </Link>
+            {/* </Link> */}
           </div>
           <div className={styles.stat}>
-            <Link to="/visited" state={visited.visited}>
+            {/* <Link to="/visited" state={visited.visited}> */}
               <h2>{visited.visited.length}</h2>
               <p>Visited</p>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
         <div>

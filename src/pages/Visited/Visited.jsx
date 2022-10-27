@@ -13,6 +13,7 @@ const Visited = (props) => {
   return ( 
     <div>
       <h1>Visited Restaurants</h1>
+
       {(visited.length === 0) ? (
         <>
           <br />
@@ -21,14 +22,15 @@ const Visited = (props) => {
           <h4 style={{textAlign:"center"}}> Add restaurants to your visited<br/> by adding a rating on a restaurant details page </h4>
         </>
       ):(
-        <ul>
-          <RestaurantCardRow title="Most Recent" restaurants={mostRecent}/>
-          <RestaurantCardRow title="Top Rated" restaurants={topRated}/>
-          <RestaurantCardRow title="ToT Favorites" restaurants={totFavorites}/>
-        </ul>
+      <ul>
+        <RestaurantCardRow title="Most Recent" restaurants={mostRecent}/>
+        <br></br>
+        <RestaurantCardRow title="Top Rated" restaurants={topRated}/>
+        <br></br> 
+        <RestaurantCardRow title="ToT Favorites" restaurants={totFavorites}/>
+      </ul>
       )}
-
-
+      
     </div>
   );
 }

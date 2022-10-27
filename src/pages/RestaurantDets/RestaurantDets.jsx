@@ -55,7 +55,6 @@ const RestaurantDets = (props) => {
       <div><h1>{restaurant.name}</h1></div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         <div>{restaurant.cuisineType}</div>
-        <div>Rating</div>
         <div>{restaurant.website}</div>
         <div>{restaurant.tags}</div>
         <br />

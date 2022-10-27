@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TTVidFull from "../../components/TTVidFull/TTVidFull";
 import VidButton from "../../components/VidButton/VidButton";
+import Loading from "../Loading/Loading";
 import styles from "./Wishlist.module.css";
 import Loading from "../Loading/Loading";
 

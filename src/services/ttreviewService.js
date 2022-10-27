@@ -12,6 +12,10 @@ const index = async () => {
 };
 
 const create = async (ttreviewData) => {
+  const formattedData = {
+    url: ttreviewData.url,
+    restaurant: ttreviewData.rest
+  }
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
@@ -19,7 +23,7 @@ const create = async (ttreviewData) => {
         Authorization: `Bearer ${tokenService.getToken()}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(ttreviewData),
+      body: JSON.stringify(formattedData),
     });
     return res.json();
   } catch (error) {
