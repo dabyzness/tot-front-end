@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, redirect } from "react-router-dom";
-import Button from "@mui/material/Button";
 
 import SimpleSnackbar from "../../components/SuccessSnackbar";
 
@@ -41,9 +40,9 @@ const New = (props) => {
           placeholder="TikTok video url"
           onChange={handleChange}
         />
-        <button type="submit" disabled={isDisabled}>
-          <SimpleSnackbar /> 
-        </button>
+
+          <SimpleSnackbar handleChange={handleChange} disabled={isDisabled}/> 
+
       </form>
       </div>
       <Link to="/restaurants/new">
