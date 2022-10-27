@@ -2,6 +2,7 @@ import { useState } from "react";
 import TTVidFull from "../../components/TTVidFull/TTVidFull";
 import VidButton from "../../components/VidButton/VidButton";
 import styles from "./Wishlist.module.css";
+import Loading from "../Loading/Loading";
 
 const Wishlist = (props) => {
   const [idx, setIdx] = useState(0);
@@ -18,6 +19,10 @@ const Wishlist = (props) => {
   //   }
   // };
 
+  if (!props.profile) {
+    return <Loading />;
+  }
+
   return (
     <main className={styles.fakeMain}>
       <h1>Wishlist</h1>
@@ -28,6 +33,8 @@ const Wishlist = (props) => {
               key={item._id}
               dbID={item._id}
               vidID={item.vidID}
+              profile={props.profile}
+              handleRemoveFromWishlist={props.handleRemoveFromWishlist}
               // nextVideo={nextVideo}
               // prevVideo={prevVideo}
             />

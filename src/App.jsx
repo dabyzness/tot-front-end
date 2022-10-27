@@ -100,10 +100,18 @@ const App = () => {
         wishlist.wishlist[wishlist.wishlist.length - 1],
       ],
     });
+  };
 
-    setTimeout(() => {
-      console.log(profile);
-    }, 1000);
+  const handleRemoveFromWishlist = async (profileId, ttReviewId) => {
+    const wishlist = await profileService.removeFromWishlist(
+      profileId,
+      ttReviewId
+    );
+
+    setProfile({
+      ...profile,
+      wishlist: profile.wishlist.filter((item) => item._id !== ttReviewId),
+    });
   };
 
   useEffect(() => {
@@ -191,7 +199,10 @@ const App = () => {
             path="/wishlist"
             element={
               <ProtectedRoute user={user}>
-                <Wishlist profile={profile} />
+                <Wishlist
+                  profile={profile}
+                  handleRemoveFromWishlist={handleRemoveFromWishlist}
+                />
               </ProtectedRoute>
             }
           />

@@ -40,4 +40,20 @@ async function addToWishlist(profileId, ttReviewId) {
   return res.json();
 }
 
-export { getAllProfiles, getProfile, follow, unfollow, addToWishlist };
+async function removeFromWishlist(profileId, ttReviewId) {
+  const res = await fetch(`${BASE_URL}/${profileId}/${ttReviewId}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
+  });
+
+  return res.json();
+}
+
+export {
+  getAllProfiles,
+  getProfile,
+  follow,
+  unfollow,
+  addToWishlist,
+  removeFromWishlist,
+};
