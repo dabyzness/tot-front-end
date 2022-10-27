@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import tot from "../../assets/tot.png";
 import styles from "./Landing.module.css";
+import { flexbox } from "@mui/system";
 
 const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
   const [popupViewState, setPopupViewState] = useState(null);
@@ -30,6 +31,12 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
         onClick={(e) => {
           e.originalEvent.stopPropagation();
           setPopupViewState(restaurant);
+        }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <p style={{ marginBottom: "-5px", color: "white" }}>
@@ -71,7 +78,14 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
               anchor="top"
               onClose={() => setPopupViewState(null)}
             >
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <p style={{ fontSize: "1.1rem" }}>{popupViewState.name}</p>
                 <button
                   style={{ transform: "scale(75%)" }}
