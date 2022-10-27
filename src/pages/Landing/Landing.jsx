@@ -1,4 +1,5 @@
 import TTRow from "../../components/TTRow/TTRow";
+import LandingResRow from "../../components/LandingResRow/LandingResRow";
 
 import Map, { Marker, Popup, FullscreenControl } from "react-map-gl";
 import { useState, useMemo, useRef, useCallback } from "react";
@@ -98,6 +99,8 @@ const Landing = ({ user, restaurants, ttreviews }) => {
       </button>
       <h3>Tastes of TikTok</h3>
       <TTRow ttreviews={ttreviews} />
+      <h3>ToT Restaurants</h3>
+      <LandingResRow restaurants={restaurants} />
     </main>
   );
 };

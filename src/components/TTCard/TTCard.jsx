@@ -49,7 +49,6 @@ const TTCard = ({ ttreview }) => {
               style={{ width: "90px", height: "160px" }}
               src={clappertot}
               alt="clappertot"
-              onEr
             />
           )}
         </div>
