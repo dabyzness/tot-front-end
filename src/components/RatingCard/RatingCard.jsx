@@ -32,14 +32,17 @@ const RatingCard = (props) => {
     e.preventDefault();
     props.handleUpdateRating(props.restaurant._id, props.rating._id, form);
     setIsEdit(false)
-
   };
+
+  const handleDelete = (ratingid) => {
+    props.deleteRating(props.restaurant._id,ratingid)
+  }
 
   let isUser = props.rating.author._id === props.user.profile;
 
   return (
     <div style={{ padding: '5px', border: '1px solid black', margin: '2px' }}>
-      {props.rating.author.name}-{ratingText}
+      <b>{props.rating.author.name}</b> - {ratingText}
       <br />
       {isEdit ? (
         <div>
@@ -74,7 +77,11 @@ const RatingCard = (props) => {
         <>{props.rating.comment}</>
       )}
       {isUser && !isEdit && (
-        <button onClick={() => setIsEdit(true)}>Edit</button>
+        <>
+          <br />
+          <button onClick={() => setIsEdit(true)}>Edit</button>
+          <button onClick={() => handleDelete(props.rating._id)}>Delete</button>
+        </>
       )}
     </div>
   );
