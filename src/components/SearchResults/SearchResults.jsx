@@ -4,7 +4,7 @@ import styles from "./SearchResults.module.css";
 
 const SearchResults = ({ results, typeQuery }) => {
   return (
-    <div className={styles.container}>
+    <ul className={styles.container}>
       {results.map((result, i) => (
         <SearchResultsCard
           key={`result-${i}`}
@@ -12,7 +12,7 @@ const SearchResults = ({ results, typeQuery }) => {
           typeQuery={typeQuery}
         />
       ))}
-    </div>
+    </ul>
   );
 };
 

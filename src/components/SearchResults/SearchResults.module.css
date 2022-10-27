@@ -4,4 +4,5 @@
   flex-direction: column;
   justify-items: center;
   gap: 1rem;
+  padding:0;
 }
