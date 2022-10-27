@@ -55,7 +55,6 @@ const App = () => {
   const handleAddRestaurant = async (restaurantData) => {
     const newRestaurant = await restaurantService.create(restaurantData);
     setRestaurants([newRestaurant, ...restaurants]);
-    navigate("/restaurant/");
   };
 
   const handleAddRating = async (id, ratingData) => {
@@ -83,7 +82,6 @@ const App = () => {
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
     setTTReviews([newTTReview, ...ttreviews]);
-    navigate("/reviews");
   };
 
   const handleDeleteTTReview = async (id) => {
@@ -164,7 +162,7 @@ const App = () => {
             path="/new"
             element={
               <ProtectedRoute user={user}>
-                <New user={user} handleAddTTReview={handleAddTTReview} />
+                <New user={user} handleAddTTReview={handleAddTTReview} handleAddRestaurant={handleAddRestaurant} />
               </ProtectedRoute>
             }
           />
