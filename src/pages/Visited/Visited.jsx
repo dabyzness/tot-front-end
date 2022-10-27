@@ -14,7 +14,9 @@ const Visited = (props) => {
       <h1>Visited Restaurants</h1>
       <ul>
         <RestaurantCardRow title="Most Recent" restaurants={mostRecent}/>
+        <br></br>
         <RestaurantCardRow title="Top Rated" restaurants={topRated}/>
+        <br></br> 
         <RestaurantCardRow title="ToT Favorites" restaurants={totFavorites}/>
       </ul>
     </div>
