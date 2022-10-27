@@ -1,8 +1,10 @@
 .row {
   display: flex;
   flex-direction: row;
-  min-height: 200px;
-  width: 80%;
+  min-height: 180px;
+  width: 90%;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  white-space: nowrap;
+  align-items: flex-start;
 }

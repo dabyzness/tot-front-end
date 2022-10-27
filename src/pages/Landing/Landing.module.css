@@ -1,13 +1,14 @@
 .container {
-  height: 90vh;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
 .mapContainer {
-  padding-top: 1rem;
   width: 90vw;
   height: 30vh;
+  border: 2px solid var(--blue);
+  border-radius: 10px;
+  margin-bottom: 1em;
 }
 

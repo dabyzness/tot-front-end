@@ -9,7 +9,7 @@ import styles from "./Landing.module.css";
 
 const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
   const [popupViewState, setPopupViewState] = useState(null);
-  const [mapSize, setMapSize] = useState({ width: "90vw", height: "30vw" });
+  // const [mapSize, setMapSize] = useState({ width: "90vw", minHeight: "40vw" });
   const [viewState, setViewState] = useState({
     longitude: -73.99130137,
     latitude: 40.7012968,
@@ -43,13 +43,18 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
 
   return (
     <main className={styles.container}>
-      {/* <h1>Hello, {user ? user.name : "Tot"}</h1> */}
-      <div className={styles.mapContainer} style={mapSize}>
+      <h1>Hello, {user ? user.name : "Tot"}</h1>
+      <div
+        className={styles.mapContainer}
+        style={{ 
+        width: "90vw", 
+        minHeight: "400px" }}
+      >
         <Map
           ref={mapRef}
           initialViewState={viewState}
           {...viewState}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", borderRadius:"10px" }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
           onMove={(e) => setViewState(e.viewState)}
         >
@@ -74,29 +79,6 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
           )}
         </Map>
       </div>
-
-      <button
-        onClick={() => {
-          setMapSize({
-            height: "40vh",
-            width: "90vw",
-          });
-          setTimeout(() => handleResize(), 100);
-        }}
-      >
-        Original
-      </button>
-      <button
-        onClick={() => {
-          setMapSize({
-            height: "90vh",
-            width: "90vw",
-          });
-          setTimeout(() => handleResize(), 100);
-        }}
-      >
-        Large
-      </button>
       <h3>Tastes of TikTok</h3>
       <TTRow
         ttreviews={ttreviews}
