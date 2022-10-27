@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import tot from "../../assets/tot.png";
 import Loading from "../Loading/Loading";
@@ -6,8 +6,6 @@ import TTRow from "../../components/TTRow/TTRow";
 
 
 const Profile = (props) => {
-  const { id } = useParams()
-
   if (!props.profile) return <Loading/>
 
   return (

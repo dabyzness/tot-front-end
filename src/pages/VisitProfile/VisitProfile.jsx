@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from "./VisitProfile.module.css";
 import tot from "../../assets/tot.png";
-import Loading from "../Loading/Loading";
 import * as profileService from "../../services/profileService"
+
+import Loading from "../Loading/Loading";
+import TTRow from "../../components/TTRow/TTRow";
 
 
 const VisitProfile = (props) => {
@@ -80,7 +82,8 @@ const VisitProfile = (props) => {
           )}
         </div>
         <div>
-          <p>Wishlist: {visited.wishlist.length}</p>
+          <h5>Wishlist: {visited.wishlist.length}</h5>
+          <TTRow ttreviews={visited.wishlist} />
         </div>
       </div>
     </>
