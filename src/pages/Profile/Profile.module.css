@@ -1,6 +1,8 @@
 .logout {
   display: flex;
   justify-content: flex-end;
+  text-decoration: none;
+  color: black;
 }
 
 .pn {
@@ -22,9 +24,15 @@
   display: flex;
   width: 70%;
   flex-wrap: wrap;
+
 }
 
 .stat {
   width: 50%;
   text-align: center;
+}
+
+.statLink {
+  text-decoration: none;
+  color: black;
 }
