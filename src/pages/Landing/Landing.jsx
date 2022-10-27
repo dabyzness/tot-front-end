@@ -1,7 +1,7 @@
 import TTRow from "../../components/TTRow/TTRow";
 import LandingResRow from "../../components/LandingResRow/LandingResRow";
 
-import Map, { Marker, Popup, FullscreenControl } from "react-map-gl";
+import Map, { Marker, Popup } from "react-map-gl";
 import { useState, useMemo, useRef, useCallback } from "react";
 
 import tot from "../../assets/tot.png";
@@ -46,20 +46,19 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
       <h1>Hello, {user ? user.name : "Tot"}</h1>
       <div
         className={styles.mapContainer}
-        style={{ 
-        width: "90vw", 
-        minHeight: "400px" }}
+        style={{
+          width: "90vw",
+          minHeight: "400px",
+        }}
       >
         <Map
           ref={mapRef}
           initialViewState={viewState}
           {...viewState}
-          style={{ width: "100%", height: "100%", borderRadius:"10px" }}
+          style={{ width: "100%", height: "100%", borderRadius: "10px" }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
           onMove={(e) => setViewState(e.viewState)}
         >
-          <FullscreenControl />
-
           {markers}
 
           {popupViewState && (
