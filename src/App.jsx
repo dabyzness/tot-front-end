@@ -77,6 +77,7 @@ const App = () => {
       updatedRest
     );
     navigate(`/restaurant/${updatedRest._id}`);
+    return updatedRest
   };
 
   const handleAddTTReview = async (ttreviewData) => {

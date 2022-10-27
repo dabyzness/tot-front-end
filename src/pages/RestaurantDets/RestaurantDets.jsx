@@ -26,9 +26,15 @@ const RestaurantDets = (props) => {
     fetchRestaurant()
   }
 
+  const updateRestaurant = async (id, ratingid, ratingData) => {
+    const updatedRest = await props.handleUpdateRating(id, ratingid, ratingData)
+    setRestaurant(updatedRest)
+  }
+
 
   useEffect(() => {
     const fetchRestaurant = async () => {
+      console.log("This")
       const data = await restaurantService.show(id);
       setRestaurant(data);
       if (props.profile.visited.some((rest) => rest._id === data._id)) {
@@ -46,6 +52,7 @@ const RestaurantDets = (props) => {
 
   return (
     <>
+      {console.log(restaurant)}
       <Map
         initialViewState={{
           longitude: Number(restaurant.location.longitude),
@@ -97,11 +104,11 @@ const RestaurantDets = (props) => {
           <div>
             Ratings( {restaurant.ratings.length} ):
             {restaurant.ratings.map((rating) => (
-              <RatingCard
+              <RatingCard key={rating._id}
                 rating={rating}
                 user={props.user}
                 restaurant={restaurant}
-                handleUpdateRating={props.handleUpdateRating}
+                updateRestaurant={updateRestaurant}
                 deleteRating={deleteRating}
               />
             ))}
