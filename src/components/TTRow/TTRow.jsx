@@ -2,7 +2,7 @@ import TTCard from "../TTCard/TTCard";
 
 import styles from "./Row.module.css";
 
-const TTRow = ({ ttreviews, handleAddToWishlist, user }) => {
+const TTRow = ({ ttreviews, handleAddToWishlist, profile }) => {
   return (
     <div className={styles.row}>
       {ttreviews.map((ttreview, i) => (
@@ -10,7 +10,7 @@ const TTRow = ({ ttreviews, handleAddToWishlist, user }) => {
           ttreview={ttreview}
           key={i}
           handleAddToWishlist={handleAddToWishlist}
-          user={user}
+          profile={profile}
         />
       ))}
       {/* <TTCard ttreviews={ttreviews}/> */}

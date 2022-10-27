@@ -1,38 +1,38 @@
 // npm modules
-import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 // page components
-import Signup from './pages/Signup/Signup';
-import Login from './pages/Login/Login';
-import Landing from './pages/Landing/Landing';
-import ChangePassword from './pages/ChangePassword/ChangePassword';
-import Home from './pages/Home/Home';
-import Search from './pages/Search/Search';
-import New from './pages/New/New';
-import Wishlist from './pages/Wishlist/Wishlist';
-import NewRestaurant from './components/NewRestaurant/NewRestaurant';
-import RestaurantDets from './pages/RestaurantDets/RestaurantDets';
-import NewRating from './pages/NewRating/NewRating';
-import Profile from './pages/Profile/Profile';
-import VisitProfile from './pages/VisitProfile/VisitProfile';
-import Followers from './pages/Followers/Followers';
-import Following from './pages/Following/Following';
-import Shared from './pages/Shared/Shared';
-import Visited from './pages/Visited/Visited';
+import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
+import Landing from "./pages/Landing/Landing";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import Home from "./pages/Home/Home";
+import Search from "./pages/Search/Search";
+import New from "./pages/New/New";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import NewRestaurant from "./components/NewRestaurant/NewRestaurant";
+import RestaurantDets from "./pages/RestaurantDets/RestaurantDets";
+import NewRating from "./pages/NewRating/NewRating";
+import Profile from "./pages/Profile/Profile";
+import VisitProfile from "./pages/VisitProfile/VisitProfile";
+import Followers from "./pages/Followers/Followers";
+import Following from "./pages/Following/Following";
+import Shared from "./pages/Shared/Shared";
+import Visited from "./pages/Visited/Visited";
 
 // components
-import Nav from './components/Nav/Nav';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import Nav from "./components/Nav/Nav";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // services
-import * as authService from './services/authService';
-import * as profileService from './services/profileService';
-import * as restaurantService from './services/restaurantService';
-import * as ttreviewService from './services/ttreviewService';
+import * as authService from "./services/authService";
+import * as profileService from "./services/profileService";
+import * as restaurantService from "./services/restaurantService";
+import * as ttreviewService from "./services/ttreviewService";
 
 // styles
-import './App.css';
+import "./App.css";
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
@@ -45,7 +45,7 @@ const App = () => {
   const handleLogout = () => {
     authService.logout();
     setUser(null);
-    navigate('/');
+    navigate("/");
   };
 
   const handleSignupOrLogin = () => {
@@ -166,7 +166,7 @@ const App = () => {
             path="/"
             element={
               <Landing
-                user={user}
+                profile={profile}
                 restaurants={restaurants}
                 ttreviews={ttreviews}
                 handleAddToWishlist={handleAddToWishlist}

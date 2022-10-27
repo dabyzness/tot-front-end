@@ -9,7 +9,7 @@ import tot from "../../assets/tot.png";
 import styles from "./Landing.module.css";
 import { flexbox } from "@mui/system";
 
-const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
+const Landing = ({ profile, restaurants, ttreviews, handleAddToWishlist }) => {
   const [popupViewState, setPopupViewState] = useState(null);
   // const [mapSize, setMapSize] = useState({ width: "90vw", minHeight: "40vw" });
   const [viewState, setViewState] = useState({
@@ -53,7 +53,7 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
 
   return (
     <main className={styles.container}>
-      <h1>Hello, {user ? user.name : "Tot"}</h1>
+      <h1>Hello, {profile ? profile.name : "Tot"}</h1>
       <div
         className={styles.mapContainer}
         style={{
@@ -102,7 +102,7 @@ const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
       <TTRow
         ttreviews={ttreviews}
         handleAddToWishlist={handleAddToWishlist}
-        user={user}
+        profile={profile}
       />
       <h3>ToT Restaurants</h3>
       <LandingResRow restaurants={restaurants} />
