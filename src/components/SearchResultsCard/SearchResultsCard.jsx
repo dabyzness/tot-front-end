@@ -6,8 +6,8 @@ import tot from "../../assets/tot.png";
 const SearchResultsCard = ({ result, typeQuery }) => {
   if (result.wishlist) {
     return (
-      <div className={styles.container}>
-        <Link to={`/profile/${result._id}`}>
+      <Link to={`/profile/${result._id}`}>
+        <div className={styles.container}>
           <img className={styles.profileImg} src={tot} alt="profile-tot" />
           <div className={styles.infoContainer}>
             <h4>{result.name}</h4>
@@ -19,26 +19,26 @@ const SearchResultsCard = ({ result, typeQuery }) => {
               Shared: {result.shared.length} Visited: {result.visited.length}
             </p>
           </div>
-        </Link>
-      </div>
+        </div>
+      </Link>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <Link to={`../restaurant/${result._id}`}>
+    <Link to={`../restaurant/${result._id}`}>
+      <div className={styles.container}>
         <img
           className={styles.restaurantImg}
-          src="https://lh5.googleusercontent.com/p/AF1QipPgHYE4DbQFDRZ3CT9CaY8LTkTE4dw6_3d_zpyO=w408-h306-k-no"
+          src={result.imgs[0]}
           alt={result.name}
-          />
+        />
         <div className={styles.infoContainer}>
           <h4>{result.name}</h4>
           <p>Cuisine-type: {result.cuisineType[0]}</p>
           <p>TikToks: {1}</p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
