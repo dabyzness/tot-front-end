@@ -3,6 +3,13 @@
 }
 
 .vidContainer {
+  margin: auto;
+  /* margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100%;
