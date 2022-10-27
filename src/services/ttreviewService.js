@@ -16,7 +16,6 @@ const create = async (ttreviewData) => {
     url: ttreviewData.url,
     restaurant: ttreviewData.rest
   }
-  console.log(formattedData)
   try {
     const res = await fetch(BASE_URL, {
       method: "POST",
