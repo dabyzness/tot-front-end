@@ -90,6 +90,22 @@ const App = () => {
     return deletedTTReview;
   };
 
+  const handleAddToWishlist = async (profileId, ttReviewId) => {
+    const wishlist = await profileService.addToWishlist(profileId, ttReviewId);
+
+    setProfile({
+      ...profile,
+      wishlist: [
+        ...profile.wishlist,
+        wishlist.wishlist[wishlist.wishlist.length - 1],
+      ],
+    });
+
+    setTimeout(() => {
+      console.log(profile);
+    }, 1000);
+  };
+
   useEffect(() => {
     if (!user) {
       setProfile(null);
@@ -145,6 +161,7 @@ const App = () => {
                 user={user}
                 restaurants={restaurants}
                 ttreviews={ttreviews}
+                handleAddToWishlist={handleAddToWishlist}
               />
             }
           />
@@ -162,7 +179,11 @@ const App = () => {
             path="/new"
             element={
               <ProtectedRoute user={user}>
-                <New user={user} handleAddTTReview={handleAddTTReview} handleAddRestaurant={handleAddRestaurant} />
+                <New
+                  user={user}
+                  handleAddTTReview={handleAddTTReview}
+                  handleAddRestaurant={handleAddRestaurant}
+                />
               </ProtectedRoute>
             }
           />
@@ -191,7 +212,7 @@ const App = () => {
             path="/followers"
             element={
               <ProtectedRoute user={user}>
-                <Followers user={user} profile={profile}/>
+                <Followers user={user} profile={profile} />
               </ProtectedRoute>
             }
           />
@@ -199,7 +220,7 @@ const App = () => {
             path="/following"
             element={
               <ProtectedRoute user={user}>
-                <Following user={user} profile={profile}/>
+                <Following user={user} profile={profile} />
               </ProtectedRoute>
             }
           />

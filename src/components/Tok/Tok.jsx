@@ -29,9 +29,17 @@ const Tok = (props) => {
         />
       </div>
       <br />
-      <div>
-        <button>Restaurant Details</button>
-      </div>
+      {props.user && (
+        <div>
+          <button
+            onClick={() =>
+              props.handleAddToWishlist(props.user.profile, props.ttreview._id)
+            }
+          >
+            Add To Wishlist
+          </button>
+        </div>
+      )}
     </div>
   );
 };

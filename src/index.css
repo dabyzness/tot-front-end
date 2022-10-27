@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 :root {
   --tan: #fafafa;
-  --blue: #0D3B66;
-  --yellow: #F4D35E;
-  --orange: #EE964B;
-  --dark-orange: #f95738; 
+  --blue: #0d3b66;
+  --yellow: #f4d35e;
+  --orange: #ee964b;
+  --dark-orange: #f95738;
 }
 
 body {
   margin: 0;
-  font-family: 'Quicksand', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Quicksand", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,7 +24,7 @@ main {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -33,9 +34,10 @@ nav {
   width: 100%;
 }
 
-button, 
+button,
 input {
-  font-family: "Quicksand", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Quicksand", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
   font-weight: 700;
 }
 
@@ -61,7 +63,7 @@ h3 {
   text-align: left;
 }
 
-.form-container{
+.form-container {
   display: flex;
   justify-content: center;
 }

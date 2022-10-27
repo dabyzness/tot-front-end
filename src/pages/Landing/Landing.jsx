@@ -7,7 +7,7 @@ import { useState, useMemo, useRef, useCallback } from "react";
 import tot from "../../assets/tot.png";
 import styles from "./Landing.module.css";
 
-const Landing = ({ user, restaurants, ttreviews }) => {
+const Landing = ({ user, restaurants, ttreviews, handleAddToWishlist }) => {
   const [popupViewState, setPopupViewState] = useState(null);
   const [mapSize, setMapSize] = useState({ width: "90vw", height: "30vw" });
   const [viewState, setViewState] = useState({
@@ -98,7 +98,11 @@ const Landing = ({ user, restaurants, ttreviews }) => {
         Large
       </button>
       <h3>Tastes of TikTok</h3>
-      <TTRow ttreviews={ttreviews} />
+      <TTRow
+        ttreviews={ttreviews}
+        handleAddToWishlist={handleAddToWishlist}
+        user={user}
+      />
       <h3>ToT Restaurants</h3>
       <LandingResRow restaurants={restaurants} />
     </main>
