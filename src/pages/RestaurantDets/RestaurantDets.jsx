@@ -94,9 +94,9 @@ const RestaurantDets = (props) => {
         <TTRow ttreviews={restaurant.ttreviews}/>
         <br/>
         {isVisited ? (
-          <button>Update Review</button>
+          <button style={{ marginTop:"1em" }}>Update Review</button>
         ) : (
-          <button>
+          <button style={{ marginTop: "1em"}}>
             <Link to={`/restaurant/${restaurant._id}/new`} state={restaurant}>
               Add Review
             </Link>
@@ -104,8 +104,8 @@ const RestaurantDets = (props) => {
         )}
         <br />
         {hasRatings ? (
-          <div>
-            Ratings( {restaurant.ratings.length} ):
+          <div style={{ padding: "20px"}}>
+            Reviews ({restaurant.ratings.length}):
             {restaurant.ratings.map((rating) => (
               <RatingCard key={rating._id}
                 rating={rating}
@@ -119,7 +119,7 @@ const RestaurantDets = (props) => {
         ) : (
           <div>
             Ratings:
-            <div>This has no ratings</div>
+            <div>This has no reviews</div>
           </div>
         )}
       </div>
