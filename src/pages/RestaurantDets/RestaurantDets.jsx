@@ -154,7 +154,7 @@ const RestaurantDets = (props) => {
         <TTRow ttreviews={restaurant.ttreviews} />
         <br />
         {isVisited ? (
-          <button style={{ marginTop:"1em" }}>Update Review</button>
+          <></>
         ) : (
           <button style={{ marginTop: "1em"}}>
             <Link to={`/restaurant/${restaurant._id}/new`} state={restaurant}>
