@@ -169,7 +169,6 @@ const App = () => {
     };
     const fetchAllTTReviews = async () => {
       const data = await ttreviewService.index();
-
       const refreshedData = await Promise.all(
         data.map(async (review) => {
           if (
