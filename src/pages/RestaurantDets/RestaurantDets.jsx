@@ -5,6 +5,7 @@ import Map, { Marker } from "react-map-gl";
 import tot from "../../assets/tot.png";
 import Loading from "../Loading/Loading";
 import RatingCard from "../../components/RatingCard/RatingCard";
+import TTRow from "../../components/TTRow/TTRow";
 
 const RestaurantDets = (props) => {
   const { id } = useParams();
@@ -89,7 +90,9 @@ const RestaurantDets = (props) => {
         <div>{restaurant.cuisineType}</div>
         <div>{restaurant.website}</div>
         <div>{restaurant.tags}</div>
-        <br />
+        <br/>
+        <TTRow ttreviews={restaurant.ttreviews}/>
+        <br/>
         {isVisited ? (
           <button>Update Review</button>
         ) : (
