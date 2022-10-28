@@ -307,7 +307,7 @@ const App = () => {
             path="/profile/:id"
             element={
               <ProtectedRoute user={user}>
-                <VisitProfile profile={profile} />
+                <VisitProfile profile={profile} setProfile={setProfile} />
               </ProtectedRoute>
             }
           />
