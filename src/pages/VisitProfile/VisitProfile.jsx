@@ -34,6 +34,9 @@ const VisitProfile = (props) => {
   }, [id]);
 
   useEffect(() => {
+    if (!visited) {
+      return;
+    }
     setIsFollowing(
       visited.followers.find((follower) => follower._id === props.profile._id)
     );
