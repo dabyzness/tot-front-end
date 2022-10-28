@@ -2,8 +2,9 @@
 ## <a href="https://tots-hot-tots.netlify.app/">Link to App!</a>
 <a href="https://github.com/dabyzness/tot-back-end">Link to Backend</a>
 
-INSERT APP SCREENSHOT
-INSERT APP SCREENSHOT
+![Landing Page Screenshot](./public/screenshot1.png)
+![Restaurant Page Screenshot](./public/screenshot2.png)
+![Profile Screenshot](./public/screenshot3.png)
 
 ## About this project
 Have you ever been scrolling on TikTok and found a review of a restaurant you'd love to visit?  That where Taste of TikTok comes in handy!  Save TikTok restaurant reviews and their corresponding restaurants in the app, then when you're hungry return to the app and find added restaurants!
@@ -27,6 +28,7 @@ Have you ever been scrolling on TikTok and found a review of a restaurant you'd 
 
 ## External Resources Used:
 <a href="https://mui.com/">MUI</a> for their CSS framework<br/>
+<a href="https://getbootstrap.com//">Bootstrap</a> for their CSS framework<br/>
 <a href="https://www.zondicons.com/">Zondicons</a> for their beautiful icons<br/>
 <a href="https://www.mapbox.com/">Mapbox</a> for their React Map components<br/>
 <a href="https://www.tiktok.com/">TikTok</a> for their TikTok reviews<br/>
