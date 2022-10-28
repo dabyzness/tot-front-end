@@ -100,7 +100,7 @@ const VisitProfile = (props) => {
           )}
         </div>
         <div>
-          <h5>Wishlist: {visited.wishlist.length}</h5>
+          <h5>Wishlist ({visited.wishlist.length}):</h5>
           <TTRow ttreviews={visited.wishlist} />
         </div>
       </div>
