@@ -6,15 +6,23 @@ import tot from "../../assets/tot.png";
 import Loading from "../Loading/Loading";
 import RatingCard from "../../components/RatingCard/RatingCard";
 import TTRow from "../../components/TTRow/TTRow";
+import Tag from "../../components/Tag/Tag";
+import { tagNames } from "../../assets/data/tagNames.js";
+import styles from "./RestaurantDets.module.css";
 
 const RestaurantDets = (props) => {
   const { id } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [isVisited, setIsVisited] = useState(null);
+  const [addTags, setAddTags] = useState(false);
+  const [tagsToAdd, setTagsToAdd] = useState("");
 
-  const deleteRating = async(id,ratingid) =>{
-    props.removeVisitedRestaurant(id)
-    const updatedRestaurant = await restaurantService.deleteRating(id,ratingid);
+  const deleteRating = async (id, ratingid) => {
+    props.removeVisitedRestaurant(id);
+    const updatedRestaurant = await restaurantService.deleteRating(
+      id,
+      ratingid
+    );
     const fetchRestaurant = async () => {
       const data = await restaurantService.show(id);
       setRestaurant(data);
@@ -23,19 +31,31 @@ const RestaurantDets = (props) => {
       } else {
         setIsVisited(false);
       }
-    }
-    fetchRestaurant()
-  }
+    };
+    fetchRestaurant();
+  };
 
   const updateRestaurant = async (id, ratingid, ratingData) => {
-    const updatedRest = await props.handleUpdateRating(id, ratingid, ratingData)
-    setRestaurant(updatedRest)
-  }
+    const updatedRest = await props.handleUpdateRating(
+      id,
+      ratingid,
+      ratingData
+    );
+    setRestaurant(updatedRest);
+  };
 
+  const handleSubmit = async () => {
+    const tagArr = tagsToAdd
+      .split(",")
+      .slice(0, tagsToAdd.split(",").length - 1);
+    await props.handleUpdateTags(restaurant._id, tagArr);
+
+    setTagsToAdd("");
+  };
 
   useEffect(() => {
     const fetchRestaurant = async () => {
-      console.log("This")
+      console.log("This");
       const data = await restaurantService.show(id);
       setRestaurant(data);
       if (props.profile.visited.some((rest) => rest._id === data._id)) {
@@ -46,6 +66,14 @@ const RestaurantDets = (props) => {
     };
     fetchRestaurant();
   }, [id, props.profile]);
+
+  useEffect(() => {
+    if (addTags) {
+      setTagsToAdd(restaurant.tags.join());
+    } else {
+      setTagsToAdd("");
+    }
+  }, [addTags]);
 
   let hasRatings = null;
 
@@ -90,9 +118,41 @@ const RestaurantDets = (props) => {
         <div>{restaurant.cuisineType}</div>
         <div>{restaurant.website}</div>
         <div>{restaurant.tags}</div>
-        <br/>
-        <TTRow ttreviews={restaurant.ttreviews}/>
-        <br/>
+        <div style={{ display: "flex" }}>
+          <button
+            onClick={(e) => {
+              setAddTags(!addTags);
+            }}
+          >
+            {addTags ? "Cancel" : "Add Tags"}
+          </button>
+          {addTags && (
+            <button
+              style={{ backgroundColor: "green", color: "white" }}
+              onClick={() => handleSubmit()}
+            >
+              Submit the Vibes
+            </button>
+          )}
+        </div>
+        {addTags && (
+          <div className={styles.tagContainer}>
+            {tagNames
+              .sort((a, b) => (a < b ? -1 : 1))
+              .map((tagName) => (
+                <Tag
+                  key={tagName}
+                  name={tagName}
+                  searchTerm={tagsToAdd}
+                  setSearchTerm={setTagsToAdd}
+                  addedTags={restaurant.tags}
+                />
+              ))}
+          </div>
+        )}
+        <br />
+        <TTRow ttreviews={restaurant.ttreviews} />
+        <br />
         {isVisited ? (
           <button>Update Review</button>
         ) : (
@@ -103,11 +163,13 @@ const RestaurantDets = (props) => {
           </button>
         )}
         <br />
+
         {hasRatings ? (
           <div>
             Ratings( {restaurant.ratings.length} ):
             {restaurant.ratings.map((rating) => (
-              <RatingCard key={rating._id}
+              <RatingCard
+                key={rating._id}
                 rating={rating}
                 user={props.user}
                 restaurant={restaurant}

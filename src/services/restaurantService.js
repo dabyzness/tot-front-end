@@ -54,41 +54,59 @@ const createRating = async (id, ratingData) => {
   }
 };
 
-const updateRating = async (id,ratingid,ratingData) => {
+const updateRating = async (id, ratingid, ratingData) => {
   try {
     const res = await fetch(`${BASE_URL}/${id}/rating/${ratingid}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        "Authorization": `Bearer ${tokenService.getToken()}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${tokenService.getToken()}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(ratingData)
-    })
-    return res.json()
+      body: JSON.stringify(ratingData),
+    });
+    return res.json();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-const deleteRating = async (id,ratingid) => {
+const deleteRating = async (id, ratingid) => {
   try {
     const res = await fetch(`${BASE_URL}/${id}/rating/${ratingid}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${tokenService.getToken()}`
+        Authorization: `Bearer ${tokenService.getToken()}`,
       },
-    })
-    return res.json()
+    });
+    return res.json();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export{
+const updateTags = async (id, tags) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${tokenService.getToken()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tags),
+    });
+
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
   index,
   create,
   show,
   createRating,
   updateRating,
   deleteRating,
-}
+  updateTags,
+};

@@ -56,6 +56,7 @@ const Search = () => {
                 name={tagName}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                addedTags={[]}
               />
             ))}
         </div>
