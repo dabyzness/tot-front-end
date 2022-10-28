@@ -35,7 +35,7 @@ const Shared = (props) => {
 
   return ( 
     <>
-      <h1> Shared TikToks </h1>
+      <h1> Added TikToks </h1>
       <TTVidFull 
         buttonText="Delete" 
         buttonFunction={buttonFunction}

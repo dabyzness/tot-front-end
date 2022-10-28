@@ -30,6 +30,7 @@ const TTVidFull = (props) => {
           allow="encrypted-media;"
         />
       </div>
+
       {props.handleRemoveFromWishlist && (
         <button
           style={{ marginTop: "auto", marginBottom: "8rem" }}
@@ -40,6 +41,7 @@ const TTVidFull = (props) => {
           Remove from WishList
         </button>
       )}
+
     </div>
   );
 };

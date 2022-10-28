@@ -70,10 +70,25 @@ const updateRating = async (id,ratingid,ratingData) => {
   }
 }
 
+const deleteRating = async (id,ratingid) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}/rating/${ratingid}`, {
+      method: 'DELETE',
+      headers: {
+        "Authorization": `Bearer ${tokenService.getToken()}`
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export{
   index,
   create,
   show,
   createRating,
   updateRating,
+  deleteRating,
 }

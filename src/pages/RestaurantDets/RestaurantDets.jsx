@@ -5,14 +5,37 @@ import Map, { Marker } from "react-map-gl";
 import tot from "../../assets/tot.png";
 import Loading from "../Loading/Loading";
 import RatingCard from "../../components/RatingCard/RatingCard";
+import TTRow from "../../components/TTRow/TTRow";
 
 const RestaurantDets = (props) => {
   const { id } = useParams();
   const [restaurant, setRestaurant] = useState(null);
   const [isVisited, setIsVisited] = useState(null);
 
+  const deleteRating = async(id,ratingid) =>{
+    props.removeVisitedRestaurant(id)
+    const updatedRestaurant = await restaurantService.deleteRating(id,ratingid);
+    const fetchRestaurant = async () => {
+      const data = await restaurantService.show(id);
+      setRestaurant(data);
+      if (props.profile.visited.some((rest) => rest._id === data._id)) {
+        setIsVisited(true);
+      } else {
+        setIsVisited(false);
+      }
+    }
+    fetchRestaurant()
+  }
+
+  const updateRestaurant = async (id, ratingid, ratingData) => {
+    const updatedRest = await props.handleUpdateRating(id, ratingid, ratingData)
+    setRestaurant(updatedRest)
+  }
+
+
   useEffect(() => {
     const fetchRestaurant = async () => {
+      console.log("This")
       const data = await restaurantService.show(id);
       setRestaurant(data);
       if (props.profile.visited.some((rest) => rest._id === data._id)) {
@@ -30,6 +53,7 @@ const RestaurantDets = (props) => {
 
   return (
     <>
+      {console.log(restaurant)}
       <Map
         initialViewState={{
           longitude: Number(restaurant.location.longitude),
@@ -66,7 +90,9 @@ const RestaurantDets = (props) => {
         <div>{restaurant.cuisineType}</div>
         <div>{restaurant.website}</div>
         <div>{restaurant.tags}</div>
-        <br />
+        <br/>
+        <TTRow ttreviews={restaurant.ttreviews}/>
+        <br/>
         {isVisited ? (
           <button>Update Review</button>
         ) : (
@@ -81,11 +107,12 @@ const RestaurantDets = (props) => {
           <div>
             Ratings( {restaurant.ratings.length} ):
             {restaurant.ratings.map((rating) => (
-              <RatingCard
+              <RatingCard key={rating._id}
                 rating={rating}
                 user={props.user}
                 restaurant={restaurant}
-                handleUpdateRating={props.handleUpdateRating}
+                updateRestaurant={updateRestaurant}
+                deleteRating={deleteRating}
               />
             ))}
           </div>
