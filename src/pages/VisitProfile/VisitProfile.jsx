@@ -2,47 +2,47 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from "./VisitProfile.module.css";
 import tot from "../../assets/tot.png";
-import * as profileService from "../../services/profileService"
+import * as profileService from "../../services/profileService";
 
 import Loading from "../Loading/Loading";
 import TTRow from "../../components/TTRow/TTRow";
 
-
 const VisitProfile = (props) => {
+  const { id } = useParams();
+  // Visited contains the data of the profile you're visiting
+  const [visited, setVisited] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(null);
 
-  
-  const { id } = useParams()
-  const [visited, setVisited] = useState(null)
-  
-  let isFollower = false
+  const handleFollow = async (id) => {
+    const updatedProfile = await profileService.follow(id);
+    setVisited({ ...visited, followers: updatedProfile.followed });
+    props.setProfile({ ...props.profile, following: updatedProfile.following });
+  };
 
-  const handleFollow = async (id) =>{
-    const updatedProfile = await profileService.follow(id)
-    setVisited(updatedProfile)
-    isFollower = true
-  }
-
-  const handleUnfollow = async (id) =>{
-    const updatedProfile = await profileService.unfollow(id)
-    setVisited(updatedProfile)
-    isFollower = false
-  }
+  const handleUnfollow = async (id) => {
+    const updatedProfile = await profileService.unfollow(id);
+    setVisited({ ...visited, followers: updatedProfile.followed });
+    props.setProfile({ ...props.profile, following: updatedProfile.following });
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
       const data = await profileService.getProfile(id);
       setVisited(data);
-    }
+    };
     fetchProfile();
-  }, [id])
-  
+  }, [id]);
 
+  useEffect(() => {
+    setIsFollowing(
+      visited.followers.find((follower) => follower._id === props.profile._id)
+    );
+  }, [visited]);
 
-  if (!visited || !props.profile) return <Loading/>
+  if (!visited || !props.profile) return <Loading />;
 
   return (
     <>
-      {isFollower = visited.followers.some(p => p._id === props.profile._id)}
       <div className="img-holder">
         <img src={tot} alt="tot" className={styles.totavi} />
       </div>
@@ -51,34 +51,36 @@ const VisitProfile = (props) => {
         <div className={styles.stats}>
           <div className={styles.stat}>
             {/* <Link to="/following" state={visited.following}>  */}
-              <h2>{visited.following.length}</h2>
-              <p>Following</p>
+            <h2>{visited.following.length}</h2>
+            <p>Following</p>
             {/* </Link> */}
           </div>
           <div className={styles.stat}>
             {/* <Link to="/followers" state={visited.followers}> */}
-              <h2>{visited.followers.length}</h2>
-              <p>Followers</p>
+            <h2>{visited.followers.length}</h2>
+            <p>Followers</p>
             {/* </Link> */}
           </div>
           <div className={styles.stat}>
             {/* <Link to="/shared" state={visited.shared}> */}
-              <h2>{visited.shared.length}</h2>
-              <p>Shared Reviews</p>
+            <h2>{visited.shared.length}</h2>
+            <p>Shared Reviews</p>
             {/* </Link> */}
           </div>
           <div className={styles.stat}>
             {/* <Link to="/visited" state={visited.visited}> */}
-              <h2>{visited.visited.length}</h2>
-              <p>Visited</p>
+            <h2>{visited.visited.length}</h2>
+            <p>Visited</p>
             {/* </Link> */}
           </div>
         </div>
         <div>
-          {isFollower ? (
-            <button onClick={() => handleUnfollow(visited._id)}>Unfollow</button>
+          {isFollowing ? (
+            <button onClick={() => handleUnfollow(visited._id)}>
+              Unfollow
+            </button>
           ) : (
-            <button onClick={()=>handleFollow(visited._id)}>Follow</button>
+            <button onClick={() => handleFollow(visited._id)}>Follow</button>
           )}
         </div>
         <div>
