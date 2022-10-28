@@ -26,7 +26,7 @@ const NewRating = (props) => {
   return ( 
     <>
       <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}> 
-        <h1>Rating for:</h1>
+        <h1>Review for:</h1>
         <h1>{restaurant.name}</h1>
         <br />
         <div>

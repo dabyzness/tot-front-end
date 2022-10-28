@@ -42,7 +42,7 @@ const Profile = (props) => {
               state={props.profile.shared}
             >
               <h2>{props.profile.shared.length}</h2>
-              <p>Shared Reviews</p>
+              <p>Added TikToks</p>
             </Link>
           </div>
           <div className={styles.stat}>
@@ -71,7 +71,7 @@ const Profile = (props) => {
           <br />
         </div>
         <div>
-          <h5>Wishlist: {props.profile.wishlist.length}</h5>
+          <h5>Wishlist ({props.profile.wishlist.length}):</h5>
           <TTRow ttreviews={props.profile.wishlist} />
         </div>
       </div>

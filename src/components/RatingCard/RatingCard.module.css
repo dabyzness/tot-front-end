@@ -1,0 +1,19 @@
+.card{
+  padding: 10px;
+  border: 1px solid var(--blue);
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+.buttonbox {
+  width: 100%;
+  display: flex;
+  margin-top: 1em;
+  justify-content: space-around;
+}
+
+.buttonbox > button {
+  padding: 2px;
+  font-size: 14px;
+  margin: 0;
+}
