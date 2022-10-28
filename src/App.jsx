@@ -83,6 +83,8 @@ const App = () => {
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
     setTTReviews([newTTReview, ...ttreviews]);
+    const newShared = [...(profile.shared),newTTReview]
+    setProfile({ ...profile, shared: newShared })
   };
 
   const handleDeleteTTReview = async (id) => {
