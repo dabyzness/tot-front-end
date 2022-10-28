@@ -6,7 +6,7 @@ import NewRestaurant from "../../components/NewRestaurant/NewRestaurant";
 const New = (props) => {
   const [form, setForm] = useState({
     url: "",
-    rest: props.restaurants[0]._id,
+    rest: props.restaurants[0]?._id || "other",
   });
 
   const [isDisabled, setIsDisabled] = useState(true);
