@@ -48,9 +48,13 @@ const RestaurantDets = (props) => {
     const tagArr = tagsToAdd
       .split(",")
       .slice(0, tagsToAdd.split(",").length - 1);
-    await props.handleUpdateTags(restaurant._id, tagArr);
+    const returnedTags = await props.handleUpdateTags(restaurant._id, tagArr);
+
+    console.log(returnedTags);
+    setRestaurant({ ...restaurant, tags: returnedTags });
 
     setTagsToAdd("");
+    setAddTags(false);
   };
 
   useEffect(() => {
@@ -69,7 +73,7 @@ const RestaurantDets = (props) => {
 
   useEffect(() => {
     if (addTags) {
-      setTagsToAdd(restaurant.tags.join());
+      setTagsToAdd(restaurant.tags.join(",") + ",");
     } else {
       setTagsToAdd("");
     }
@@ -117,9 +121,14 @@ const RestaurantDets = (props) => {
       >
         <div>{restaurant.cuisineType}</div>
         <div>{restaurant.website}</div>
-        <div>{restaurant.tags}</div>
+        <div>{restaurant.tags.join(" ")}</div>
         <div style={{ display: "flex" }}>
           <button
+            style={{
+              margin: "1em .5em",
+              backgroundColor: "white",
+              color: "#0d3b66",
+            }}
             onClick={(e) => {
               setAddTags(!addTags);
             }}
@@ -128,7 +137,11 @@ const RestaurantDets = (props) => {
           </button>
           {addTags && (
             <button
-              style={{ backgroundColor: "green", color: "white" }}
+              style={{
+                backgroundColor: "#0d3b66",
+                color: "white",
+                margin: "1em .5em",
+              }}
               onClick={() => handleSubmit()}
             >
               Submit the Vibes

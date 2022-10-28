@@ -123,15 +123,22 @@ const App = () => {
   const handleUpdateTags = async (id, tags) => {
     const updatedTags = await restaurantService.updateTags(id, tags);
 
+    console.log(`updatedTAGS`, updatedTags.tags);
+    let tagsToReturn = [];
+
     setRestaurants(
       restaurants.map((restaurant) => {
-        if (restaurant._id === updatedTags.restaurant_id) {
+        if (restaurant._id === updatedTags._id) {
+          console.log(`updated tags`, updatedTags.tags);
           restaurant.tags = updatedTags.tags;
+          tagsToReturn = updatedTags.tags;
           return restaurant;
         }
         return restaurant;
       })
     );
+
+    return tagsToReturn;
   };
 
   const removeVisitedRestaurant = (remove) => {
