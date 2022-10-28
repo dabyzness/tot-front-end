@@ -12,6 +12,7 @@ const VisitProfile = (props) => {
   // Visited contains the data of the profile you're visiting
   const [visited, setVisited] = useState(null);
   const [isFollowing, setIsFollowing] = useState(null);
+  const [isSelf, setIsSelf] = useState(true);
 
   const handleFollow = async (id) => {
     const updatedProfile = await profileService.follow(id);
@@ -31,6 +32,11 @@ const VisitProfile = (props) => {
       setVisited(data);
     };
     fetchProfile();
+    if (id === props.user.profile){
+      setIsSelf(true)
+    } else {
+      setIsSelf(false)
+    }
   }, [id]);
 
   useEffect(() => {
@@ -78,12 +84,19 @@ const VisitProfile = (props) => {
           </div>
         </div>
         <div>
-          {isFollowing ? (
-            <button onClick={() => handleUnfollow(visited._id)}>
-              Unfollow
-            </button>
-          ) : (
-            <button onClick={() => handleFollow(visited._id)}>Follow</button>
+
+          {isSelf ?(
+            <></>
+          ):(
+            <>
+              {isFollowing ? (
+                <button onClick={() => handleUnfollow(visited._id)}>
+                  Unfollow
+                </button>
+              ) : (
+                <button onClick={() => handleFollow(visited._id)}>Follow</button>
+              )}
+            </>
           )}
         </div>
         <div>
