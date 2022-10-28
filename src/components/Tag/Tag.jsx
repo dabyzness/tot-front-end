@@ -13,6 +13,8 @@ const Tag = ({ name, searchTerm, setSearchTerm }) => {
         margin: ".25rem",
         width: "",
         borderRadius: "20px",
+        backgroundColor: "#0d3b66",
+        border: "1px solid #0d3b66",
       }}
       onClick={() => {
         if (buttonRef.current.ariaPressed === "true") {
