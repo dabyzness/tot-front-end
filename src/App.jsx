@@ -54,7 +54,13 @@ const App = () => {
 
   const handleAddRestaurant = async (restaurantData) => {
     const newRestaurant = await restaurantService.create(restaurantData);
+
+    if (!newRestaurant.address) {
+      return "INVALID URL";
+    }
+
     setRestaurants([newRestaurant, ...restaurants]);
+    return "";
   };
 
   const handleAddRating = async (id, ratingData) => {
@@ -77,14 +83,23 @@ const App = () => {
       updatedRest
     );
     navigate(`/restaurant/${updatedRest._id}`);
-    return updatedRest
+    return updatedRest;
   };
 
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
+
+    console.log(newTTReview);
+
+    if (!Object.keys(newTTReview).length) {
+      return "INVALID URL";
+    }
+
     setTTReviews([newTTReview, ...ttreviews]);
-    const newShared = [...(profile.shared),newTTReview]
-    setProfile({ ...profile, shared: newShared })
+    const newShared = [...profile.shared, newTTReview];
+    setProfile({ ...profile, shared: newShared });
+
+    return "";
   };
 
   const handleDeleteTTReview = async (id) => {
@@ -106,8 +121,8 @@ const App = () => {
   };
 
   const removeVisitedRestaurant = (remove) => {
-    setRestaurants(restaurants.filter(rest => rest._id !== remove))
-  }
+    setRestaurants(restaurants.filter((rest) => rest._id !== remove));
+  };
 
   const handleRemoveFromWishlist = async (profileId, ttReviewId) => {
     const wishlist = await profileService.removeFromWishlist(
