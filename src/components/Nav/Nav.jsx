@@ -16,27 +16,27 @@ const Nav = ({ user, handleLogout }) => {
           <div className='icon'><Link to="/changePassword">Change Password</Link></div> */}
           <div className="icon">
             <NavLink to="/">
-              <img src={home} alt="home" />
+              <img src={home} alt="home" title="Home"/>
             </NavLink>
           </div>
           <div className="icon">
             <NavLink to="/search">
-              <img src={search} alt="search" />
+              <img src={search} alt="search" title="Search" />
             </NavLink>
           </div>
           <div className="icon">
             <NavLink to="/new">
-              <img src={add} alt="new post icon" />
+              <img src={add} alt="new post icon" title="New TikTok/Restaurant" />
             </NavLink>
           </div>
           <div className="icon">
             <NavLink to="/wishlist">
-              <img src={wishlist} alt="wishlist" />
+              <img src={wishlist} alt="wishlist" title="Wishlist" />
             </NavLink>
           </div>
           <div className="icon">
             <NavLink to="/profile">
-              <img src={tot} alt="your profile" />
+              <img src={tot} alt="your profile" title="Your Profile" />
             </NavLink>
           </div>
         </>
@@ -44,12 +44,12 @@ const Nav = ({ user, handleLogout }) => {
         <>
           <div className="icon">
             <NavLink to="/">
-              <img src={home} alt="home" />
+              <img src={home} alt="home" title="Home" />
             </NavLink>
           </div>
           <div className="icon">
             <NavLink to="/search">
-              <img src={search} alt="search" />
+              <img src={search} alt="search" title="Search"/>
             </NavLink>
           </div>
           <div>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Profile.module.css";
+import style from "../../components/TTRow/Row.module.css";
 import tot from "../../assets/tot.png";
 import Loading from "../Loading/Loading";
 import TTRow from "../../components/TTRow/TTRow";
@@ -70,9 +71,9 @@ const Profile = (props) => {
           <br />
           <br />
         </div>
-        <div>
-          <h5>Wishlist ({props.profile.wishlist.length}):</h5>
-          <TTRow ttreviews={props.profile.wishlist} />
+          <h3>Wishlist ({props.profile.wishlist.length}):</h3>
+          <div className={style.row}>
+            <TTRow ttreviews={props.profile.wishlist} />
         </div>
       </div>
     </>
