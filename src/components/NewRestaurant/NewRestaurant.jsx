@@ -21,7 +21,7 @@ const NewRestaurant = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ textAlign: "center"}}>
       <h3> Don't See the Restaurant? Add It Below! </h3>
       <form onSubmit={handleSubmit} style={{ margin: '0 0 0 20px' }}>
         <input
@@ -30,7 +30,7 @@ const NewRestaurant = (props) => {
           value={url}
           placeholder="GoogleMaps URL"
           onChange={handleResChange}
-          // onChange={(e) => setUrl(e.target.value)}
+          required
         />
         <RestaurantSnackbar disabled={isDisabled} />
         <br />

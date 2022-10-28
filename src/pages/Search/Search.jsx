@@ -27,13 +27,16 @@ const Search = () => {
 
   return (
     <main>
+      <h1>Search</h1>
       <input
         className={styles.inputSearch}
         type="text"
         placeholder="search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        required
       />
+      <div className={styles.catContainer}>
       <label htmlFor="type">Search By</label>
       <select
         name="type"
@@ -45,6 +48,7 @@ const Search = () => {
         <option value="tags">Tags</option>
         <option value="cuisine">Cuisine</option>
       </select>
+      </div>
 
       {typeQuery === "tags" && (
         <div className={styles.tagContainer}>

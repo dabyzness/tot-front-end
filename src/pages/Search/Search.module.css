@@ -27,3 +27,20 @@
 .inputSearch:focus {
   width: calc(100% - 3rem);
 }
+
+.inputSearch:valid {
+  width: calc(100% - 3rem);
+}
+
+.catContainer {
+  display: flex;
+  justify-content: center;
+}
+
+select {
+  margin-left: 5px;
+  padding: 0 2px 0 8px;
+  border-radius: 10px;
+  border: 1px solid var(--blue);
+  background-color: var(--tan);
+}

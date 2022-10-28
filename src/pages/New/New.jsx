@@ -30,7 +30,6 @@ const New = (props) => {
   return (
     <>
       <h1>Add A TikTok or Restaurant</h1>
-      <h3> Add TikTokReview </h3>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <label htmlFor="url-input">URL:</label>
@@ -51,6 +50,7 @@ const New = (props) => {
             name="rest"
             value={form.rest}
             onChange={handleChange}
+            style={{marginBottom: "10px"}}
           >
             {props.restaurants.map((restaurant) => (
               <option key={restaurant._id} value={restaurant._id}>

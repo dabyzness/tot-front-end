@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import * as React from "react";
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -13,11 +13,11 @@ export default function RestaurantSnackbar(props) {
 
   const handleClick = (e) => {
     setOpen(true);
-    props.handleChange(e)
+    props.handleChange(e);
   };
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
@@ -25,14 +25,25 @@ export default function RestaurantSnackbar(props) {
 
   return (
     <>
-      <Button type="submit" disabled={props.disabled} onClick={handleClick}>
+      <Button
+        sx={{
+          border: "1px solid #0d3b66",
+          fontFamily: "Quicksand",
+          textTransform: "none",
+          borderRadius: "10px",
+          marginLeft: "120px",
+        }}
+        type="submit"
+        disabled={props.disabled}
+        onClick={handleClick}
+      >
         Add Restaurant
       </Button>
       <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Restaurant added!
         </Alert>
       </Snackbar>
-      </>
+    </>
   );
 }
