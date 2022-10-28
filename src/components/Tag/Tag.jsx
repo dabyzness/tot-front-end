@@ -18,6 +18,10 @@ const Tag = ({ name, searchTerm, setSearchTerm, addedTags }) => {
       }}
       onClick={() => {
         if (buttonRef.current.ariaPressed === "true") {
+          if (addedTags.includes(name)) {
+            return;
+          }
+
           setSearchTerm(searchTerm + `${name},`);
           buttonRef.current.textContent = `${name} \u2713`;
         } else {
@@ -26,7 +30,7 @@ const Tag = ({ name, searchTerm, setSearchTerm, addedTags }) => {
         }
       }}
     >
-      {name}
+      {addedTags.includes(name) ? `${name} \u2713` : `${name}`}
     </button>
   );
 };
