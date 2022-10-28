@@ -7,7 +7,7 @@
 ![Profile Screenshot](./public/screenshot3.png)
 
 ## About this project
-Have you ever been scrolling on TikTok and found a review of a restaurant you'd love to visit?  That where Taste of TikTok comes in handy!  Save TikTok restaurant reviews and their corresponding restaurants in the app, then when you're hungry return to the app and find added restaurants!
+Have you ever been scrolling on TikTok and found a review of a restaurant you'd love to visit?  That's where Taste of TikTok comes in handy!  Save TikTok restaurant reviews and their corresponding restaurants in the app, then when you're hungry return to the app and find added restaurants!
 
 ## Planning Materials
 <a href="https://trello.com/b/Zlz6fYZh/tot">Link to Trello Board</a>
@@ -35,5 +35,5 @@ Have you ever been scrolling on TikTok and found a review of a restaurant you'd 
 <a href="https://www.google.com/">Google</a> for their restaurant data<br/>
 
 ## Special Thanks:
-# Amanda Stern for photoshoping our little tot friend <3
+# Amanda Stern for photoshopping our little tot friend <3
 ![ToT friend](./public/tot.png)
