@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const Tag = ({ name, searchTerm, setSearchTerm }) => {
+const Tag = ({ name, searchTerm, setSearchTerm, addedTags }) => {
   const buttonRef = useRef();
   return (
     <button

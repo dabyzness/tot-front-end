@@ -120,6 +120,20 @@ const App = () => {
     });
   };
 
+  const handleUpdateTags = async (id, tags) => {
+    const updatedTags = await restaurantService.updateTags(id, tags);
+
+    setRestaurants(
+      restaurants.map((restaurant) => {
+        if (restaurant._id === updatedTags.restaurant_id) {
+          restaurant.tags = updatedTags.tags;
+          return restaurant;
+        }
+        return restaurant;
+      })
+    );
+  };
+
   const removeVisitedRestaurant = (remove) => {
     setRestaurants(restaurants.filter((rest) => rest._id !== remove));
   };
@@ -286,6 +300,7 @@ const App = () => {
                   profile={profile}
                   handleUpdateRating={handleUpdateRating}
                   removeVisitedRestaurant={removeVisitedRestaurant}
+                  handleUpdateTags={handleUpdateTags}
                 />
               </ProtectedRoute>
             }

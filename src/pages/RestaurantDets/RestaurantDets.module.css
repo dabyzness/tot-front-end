@@ -1,0 +1,17 @@
+.tagContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0.5rem;
+  height: 14vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tagContainer::-webkit-scrollbar {
+  display: none;
+}
