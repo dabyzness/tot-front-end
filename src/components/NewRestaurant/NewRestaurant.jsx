@@ -1,20 +1,22 @@
-import { useState } from 'react';
-import RestaurantSnackbar from '../RestaurantSnackBar/RestaurantSnackBar';
+import { useState } from "react";
+import RestaurantSnackbar from "../RestaurantSnackBar/RestaurantSnackBar";
 const NewRestaurant = (props) => {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    props.handleAddRestaurant(url);
-    setUrl('');
+    const error = await props.handleAddRestaurant(url);
+    setMessage(error);
+    setUrl("");
   };
 
   const handleResChange = (e) => {
     if (e.target.value) {
       setIsDisabled(false);
     }
-    if (e.target.value === '') {
+    if (e.target.value === "") {
       setIsDisabled(true);
     }
     setUrl(e.target.value);
@@ -23,7 +25,7 @@ const NewRestaurant = (props) => {
   return (
     <div style={{ textAlign: "center"}}>
       <h3> Don't See the Restaurant? Add It Below! </h3>
-      <form onSubmit={handleSubmit} style={{ margin: '0 0 0 20px' }}>
+      <form onSubmit={handleSubmit} style={{ margin: "0 0 0 20px" }}>
         <input
           type="text"
           name="url"
@@ -32,6 +34,9 @@ const NewRestaurant = (props) => {
           onChange={handleResChange}
           required
         />
+
+        {message && <p style={{ color: "red" }}>{message}</p>}
+
         <RestaurantSnackbar disabled={isDisabled} />
         <br />
         <h3> How to find proper GoogleMaps URL</h3>
