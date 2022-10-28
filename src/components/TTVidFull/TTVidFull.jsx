@@ -30,6 +30,18 @@ const TTVidFull = (props) => {
           allow="encrypted-media;"
         />
       </div>
+
+      {props.handleRemoveFromWishlist && (
+        <button
+          style={{ marginTop: "auto", marginBottom: "8rem" }}
+          onClick={() =>
+            props.handleRemoveFromWishlist(props.profile._id, props.dbID)
+          }
+        >
+          Remove from WishList
+        </button>
+      )}
+
     </div>
   );
 };
