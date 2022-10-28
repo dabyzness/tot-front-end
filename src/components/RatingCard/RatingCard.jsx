@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Loading from '../../pages/Loading/Loading';
 
 const RatingCard = (props) => {
   const [dets,setDets] =useState(props.rating)
@@ -30,7 +31,7 @@ const RatingCard = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleUpdateRating(props.restaurant._id, props.rating._id, form);
+    props.updateRestaurant(props.restaurant._id, props.rating._id, form);
     setIsEdit(false)
   };
 
@@ -40,8 +41,11 @@ const RatingCard = (props) => {
 
   let isUser = props.rating.author._id === props.user.profile;
 
+  
+
   return (
     <div style={{ padding: '5px', border: '1px solid black', margin: '2px' }}>
+      {console.log(props.rating.author)}
       <b>{props.rating.author.name}</b> - {ratingText}
       <br />
       {isEdit ? (
