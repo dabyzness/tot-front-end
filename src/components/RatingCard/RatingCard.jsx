@@ -44,7 +44,6 @@ const RatingCard = (props) => {
 
   return (
     <div className={styles.card}>
-      {console.log(props.rating.author)}
       <div style={{ borderBottom: "1px solid #0d3b66" }}>
         <b>{props.rating.author.name}</b> - {ratingText}
       </div>

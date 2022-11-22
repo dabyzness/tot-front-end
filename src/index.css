@@ -6,6 +6,17 @@
   --yellow: #f4d35e;
   --orange: #ee964b;
   --dark-orange: #f95738;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#iphone{
+  width:434px;
+  height: 916px;
+  border: 10px solid grey;
+  border-radius: 50px;
+  z-index: 2;
 }
 
 body {
@@ -20,7 +31,8 @@ body {
 
 main {
   /* min-height: 90%; */
-  margin-bottom: 20%;
+  max-height: 850px;
+  /* margin-bottom: 20%; */
 }
 
 code {
@@ -28,11 +40,11 @@ code {
     monospace;
 }
 
-nav {
+/* nav {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
+} */
 
 button,
 input {

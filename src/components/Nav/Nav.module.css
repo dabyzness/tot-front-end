@@ -1,8 +1,17 @@
+nav{
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  max-width:414px;
+  border-radius: 0 0 50px 50px;
+}
+
+
 .bar {
   display: flex;
   justify-content: space-around;
   background-color: var(--tan); 
-  height: 10vh;
+  height: 10%;
   border-top: 2px solid var(--blue);
 }
 
