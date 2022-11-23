@@ -89,8 +89,6 @@ const App = () => {
   const handleAddTTReview = async (ttreviewData) => {
     const newTTReview = await ttreviewService.create(ttreviewData);
 
-    console.log(newTTReview);
-
     if (!Object.keys(newTTReview).length) {
       return "INVALID URL";
     }
@@ -123,13 +121,11 @@ const App = () => {
   const handleUpdateTags = async (id, tags) => {
     const updatedTags = await restaurantService.updateTags(id, tags);
 
-    console.log(`updatedTAGS`, updatedTags.tags);
     let tagsToReturn = [];
 
     setRestaurants(
       restaurants.map((restaurant) => {
         if (restaurant._id === updatedTags._id) {
-          console.log(`updated tags`, updatedTags.tags);
           restaurant.tags = updatedTags.tags;
           tagsToReturn = updatedTags.tags;
           return restaurant;
@@ -201,7 +197,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div id="iphone">
       <main>
         <Routes>
           <Route
@@ -366,7 +362,7 @@ const App = () => {
         </Routes>
       </main>
       <Nav user={user} handleLogout={handleLogout} />
-    </>
+    </div>
   );
 };
 

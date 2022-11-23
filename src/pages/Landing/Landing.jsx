@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 import tot from "../../assets/tot.png";
 import styles from "./Landing.module.css";
-import { flexbox } from "@mui/system";
 
 const Landing = ({ profile, restaurants, ttreviews, handleAddToWishlist }) => {
   const [popupViewState, setPopupViewState] = useState(null);
@@ -57,8 +56,8 @@ const Landing = ({ profile, restaurants, ttreviews, handleAddToWishlist }) => {
       <div
         className={styles.mapContainer}
         style={{
-          width: "90vw",
-          minHeight: "400px",
+          width: "90%",
+          minHeight: "350px",
         }}
       >
         <Map

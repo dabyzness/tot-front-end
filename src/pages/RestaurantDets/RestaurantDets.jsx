@@ -49,8 +49,6 @@ const RestaurantDets = (props) => {
       .split(",")
       .slice(0, tagsToAdd.split(",").length - 1);
     const returnedTags = await props.handleUpdateTags(restaurant._id, tagArr);
-
-    console.log(returnedTags);
     setRestaurant({ ...restaurant, tags: returnedTags });
 
     setTagsToAdd("");
@@ -59,7 +57,6 @@ const RestaurantDets = (props) => {
 
   useEffect(() => {
     const fetchRestaurant = async () => {
-      console.log("This");
       const data = await restaurantService.show(id);
       setRestaurant(data);
       if (props.profile.visited.some((rest) => rest._id === data._id)) {
@@ -85,14 +82,13 @@ const RestaurantDets = (props) => {
 
   return (
     <>
-      {console.log(restaurant)}
       <Map
         initialViewState={{
           longitude: Number(restaurant.location.longitude),
           latitude: Number(restaurant.location.latitude),
           zoom: 15,
         }}
-        style={{ width: "100vw", height: "200px" }}
+        style={{ borderRadius: "50px 50px 0 0", width: "99.5%", height: "200px" }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <Marker
