@@ -4,13 +4,13 @@
 
 #button-holder {
   display: flex;
-  width: calc(30vw + 4em +4px);
+  width: calc(30vw + 4em);
   margin-bottom: -2px;
 }
 
 @media screen and (min-width: 300px) {
   #button-holder {
-    width: calc(220px + 4em + 4px);
+    width: 350px;
     margin-bottom: -5px;
 
   };

@@ -44,8 +44,14 @@ body {
 main {
   /* min-height: 90%; */
   max-height: 850px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   /* margin-bottom: 20%; */
-  
+}
+
+main::-webkit-scrollbar{
+  display: none;
 }
 
 code {

@@ -67,7 +67,7 @@ const Search = () => {
       )}
 
       {results.length !== 0 && (
-        <SearchResults results={results.slice(0,6)} typeQuery={typeQuery} />
+        <SearchResults results={results} typeQuery={typeQuery} />
       )}
     </main>
   );
