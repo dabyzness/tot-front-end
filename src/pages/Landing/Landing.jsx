@@ -12,9 +12,9 @@ const Landing = ({ profile, restaurants, ttreviews, handleAddToWishlist }) => {
   const [popupViewState, setPopupViewState] = useState(null);
   // const [mapSize, setMapSize] = useState({ width: "90vw", minHeight: "40vw" });
   const [viewState, setViewState] = useState({
-    longitude: -73.99130137,
-    latitude: 40.7012968,
-    zoom: 15,
+    longitude: -74.0002182,
+    latitude: 40.7279895,
+    zoom: 12.5,
   });
 
   const navigate = useNavigate();
@@ -103,7 +103,7 @@ const Landing = ({ profile, restaurants, ttreviews, handleAddToWishlist }) => {
         handleAddToWishlist={handleAddToWishlist}
         profile={profile}
       />
-      <h3>ToT Restaurants</h3>
+      <h3>Restaurants</h3>
       <LandingResRow restaurants={restaurants} />
     </main>
   );
